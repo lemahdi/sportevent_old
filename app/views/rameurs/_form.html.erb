@@ -1,0 +1,29 @@
+<%= form_for(@rameur) do |f| %>
+  <% if @rameur.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rameur.errors.count, "error") %> prohibited this rameur from being saved:</h2>
+
+      <ul>
+      <% @rameur.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nom %><br />
+    <%= f.text_field :nom %>
+  </div>
+  <div class="field">
+    <%= f.label :prenom %><br />
+    <%= f.text_field :prenom %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

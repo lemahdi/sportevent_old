@@ -1,0 +1,31 @@
+<h1>Listing rameurs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Prenom</th>
+      <th>Email</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rameurs.each do |rameur| %>
+    <tr>
+      <td><%= rameur.nom %></td>
+      <td><%= rameur.prenom %></td>
+      <td><%= rameur.email %></td>
+      <td><%= link_to 'Show', rameur %></td>
+      <td><%= link_to 'Edit', edit_rameur_path(rameur) %></td>
+      <td><%= link_to 'Destroy', rameur, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New Rameur', new_rameur_path %>
