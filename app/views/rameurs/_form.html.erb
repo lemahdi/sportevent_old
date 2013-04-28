@@ -3,7 +3,9 @@
     <%= form_for(@rameur) do |f| %>
       <% if @rameur.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(@rameur.errors.count, "error") %> , impossible de sauvegrader ce rameur :</h2>
+          <div class="alert alert-error">
+            <%= pluralize(@rameur.errors.count, "error") %> , impossible de sauvegrader ce rameur :
+          </div>
 
           <ul>
           <% @rameur.errors.full_messages.each do |msg| %>
@@ -25,8 +27,16 @@
         <%= f.label :email %><br />
         <%= f.text_field :email %>
       </div>
+      <div class="field">
+        <%= f.label :password %><br />
+        <%= f.password_field :password %>
+      </div>
+      <div class="field">
+        <%= f.label :password_confirmation, "Confirmation" %><br />
+        <%= f.password_field :password_confirmation %>
+      </div>
       <div class="actions">
-        <%= f.submit "Créer mon compte", class: "btn btn-large btn-primary" %>
+        <%= f.submit "Devenir membre", class: "btn btn-large btn-primary" %>
       </div>
     <% end %>
   </div>

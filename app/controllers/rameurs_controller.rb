@@ -69,6 +69,6 @@ class RameursController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rameur_params
-      params.require(:rameur).permit(:nom, :prenom, :email)
+      params.require(:rameur).permit(:nom, :prenom, :email, :password, :password_confirmation)
     end
 end
