@@ -1,30 +1,21 @@
-<h1>Listing des rameurs</h1>
+<% provide(:title, 'Rameurs') %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nom</th>
-      <th>Prenom</th>
-      <th>Email</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<h1>Tous les rameurs</h1>
 
-  <tbody>
-    <% @rameurs.each do |rameur| %>
-    <tr>
-      <td><%= rameur.nom %></td>
-      <td><%= rameur.prenom %></td>
-      <td><%= rameur.email %></td>
-      <td><%= link_to 'Afficher', rameur %></td>
-      <td><%= link_to 'Modifier', edit_rameur_path(rameur) %></td>
-      <td><%= link_to 'Détruire', rameur, method: :delete, data: { confirm: 'Etes-vous sûr ?' } %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+  <% @rameurs.each do |rameur| %>
+  <ul class="nav nav-tabs">
+    <li>
+      <%= rameur.nom %>
+      <%= rameur.prenom %>,
+      <%= rameur.email %>
+      <div class="nav nav-pills">
+        <%= link_to 'Afficher', rameur %>
+        <%= link_to 'Modifier', edit_rameur_path(rameur) %>
+        <%= link_to 'Détruire', rameur, method: :delete, data: { confirm: 'Etes-vous sûr ?' } %>
+      </div>
+    </li>
+  </ul>
+  <% end %>
 
 <br />
 
