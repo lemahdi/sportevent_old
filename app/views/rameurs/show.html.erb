@@ -1,20 +1,18 @@
+<% provide(:title, "#{@rameur.nom} #{@rameur.prenom}") %>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Nom:</strong>
-  <%= @rameur.nom %>
-</p>
-
-<p>
-  <strong>Prenom:</strong>
-  <%= @rameur.prenom %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @rameur.email %>
-</p>
-
+<div class="row">
+  <aside class="span4">
+    <section>
+			<h1>
+				<%= gravatar_for @rameur %>
+			  <%= @rameur.nom %>
+			  <%= @rameur.prenom %>
+			</h1>
+    </section>
+  </aside>
+</div>
 
 <%= link_to 'Modifier', edit_rameur_path(@rameur) %> |
 <%= link_to 'Retour', rameurs_path %>
