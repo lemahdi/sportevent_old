@@ -1,7 +1,7 @@
 <%= form_for(@rameur) do |f| %>
   <% if @rameur.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@rameur.errors.count, "error") %> prohibited this rameur from being saved:</h2>
+      <h2><%= pluralize(@rameur.errors.count, "error") %> , impossible de sauvegrader ce rameur :</h2>
 
       <ul>
       <% @rameur.errors.full_messages.each do |msg| %>

@@ -1,4 +1,4 @@
-<h1>Listing rameurs</h1>
+<h1>Listing des rameurs</h1>
 
 <table>
   <thead>
@@ -18,9 +18,9 @@
       <td><%= rameur.nom %></td>
       <td><%= rameur.prenom %></td>
       <td><%= rameur.email %></td>
-      <td><%= link_to 'Show', rameur %></td>
-      <td><%= link_to 'Edit', edit_rameur_path(rameur) %></td>
-      <td><%= link_to 'Destroy', rameur, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to 'Afficher', rameur %></td>
+      <td><%= link_to 'Modifier', edit_rameur_path(rameur) %></td>
+      <td><%= link_to 'Détruire', rameur, method: :delete, data: { confirm: 'Etes-vous sûr ?' } %></td>
     </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br />
 
-<%= link_to 'New Rameur', new_rameur_path %>
+<%= link_to 'Nouveau Rameur', new_rameur_path %>
