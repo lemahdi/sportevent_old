@@ -4,7 +4,7 @@
       <% if @rameur.errors.any? %>
         <div id="error_explanation">
           <div class="alert alert-error">
-            <%= pluralize(@rameur.errors.count, "error") %> , impossible de sauvegrader ce rameur :
+            <%= pluralize(@rameur.errors.count, "error") %> , informations incomplètes :
           </div>
 
           <ul>
@@ -36,7 +36,11 @@
         <%= f.password_field :password_confirmation %>
       </div>
       <div class="actions">
-        <%= f.submit "Devenir membre", class: "btn btn-large btn-primary" %>
+        <% if from == "new" %>
+          <%= f.submit "S'inscrire", class: "btn btn-large btn-primary" %>
+        <% elsif from == "edit" %>
+          <%= f.submit "Changer", class: "btn btn-large btn-primary" %>
+        <% end %>
       </div>
     <% end %>
   </div>
