@@ -5,6 +5,14 @@
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(:session, url: sessions_path) do |f| %>
+      <% if flash[:error] %>
+        <div id="error_explanation">
+          <div class="alert alert-error">
+            <%= flash[:error] %>
+          </div>
+        </div>
+      <% end %>
+
       <div class="field">
         <%= f.label :email %><br />
         <%= f.text_field :email %>
