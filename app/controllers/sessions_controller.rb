@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
     respond_to do |format|
       if rameur && rameur.authenticate(params[:session][:password])
     		# Sign the rameur in and redirect to the rameur's show page.
+    		sign_in rameur
         format.html { redirect_to rameur }
         format.json { render action: 'show', status: :created, location: rameur }
       else
