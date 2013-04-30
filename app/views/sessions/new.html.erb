@@ -5,16 +5,19 @@
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(:session, url: sessions_path) do |f| %>
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.text_field :email %>
+      </div>
+      <div class="field">
+        <%= f.label :password %><br />
+        <%= f.password_field :password %>
+      </div>
 
-      <%= f.label :email %>
-      <%= f.text_field :email %>
-
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-
-      <%= f.submit "S'identifier", class: "btn btn-large btn-primary" %>
+      <div class="actions">
+      	<%= f.submit "Identifiez-vous", class: "btn btn-large btn-primary" %>
+      	<p>Pas encore inscrit(e) ? <%= link_to "Inscrivez-vous.", signup_path %></p>
+      </div>
     <% end %>
-
-    <p>Déjà inscrit ? <%= link_to "Identifiez-vous.", signup_path %></p>
   </div>
 </div>

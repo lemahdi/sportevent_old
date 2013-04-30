@@ -43,5 +43,9 @@
         <% end %>
       </div>
     <% end %>
+
+    <% if from == "new" %>
+      <p>Déjà inscrit(e) ? <%= link_to "Identifiez-vous.", signin_path %></p>
+    <% end %>
   </div>
 </div>
