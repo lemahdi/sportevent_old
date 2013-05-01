@@ -7,7 +7,7 @@ class RameursController < ApplicationController
   # GET /rameurs
   # GET /rameurs.json
   def index
-    @rameurs = Rameur.all
+    @rameurs = Rameur.paginate(page: params[:page], per_page: 5)
   end
 
   # GET /rameurs/1
