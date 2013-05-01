@@ -28,6 +28,7 @@ class RameursController < ApplicationController
 
     respond_to do |format|
       if @rameur.save
+        sign_in @rameur
         format.html { redirect_to @rameur, notice: 'Vous êtes membre, félicitations.' }
         format.json { render action: 'show', status: :created, location: @rameur }
       else
