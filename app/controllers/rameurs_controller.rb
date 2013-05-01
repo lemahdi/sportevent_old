@@ -3,6 +3,7 @@ class RameursController < ApplicationController
   
   before_filter :signed_in_rameur, only: [:index, :edit, :update]
   before_filter :correct_rameur,   only: [:edit, :update]
+  before_filter :admin_rameur,     only: :destroy
 
   # GET /rameurs
   # GET /rameurs.json
@@ -60,10 +61,10 @@ class RameursController < ApplicationController
   # DELETE /rameurs/1
   # DELETE /rameurs/1.json
   def destroy
-    @rameur.destroy
+    Rameur.find(params[:id]).destroy
     respond_to do |format|
-      format.html { redirect_to rameurs_url }
-      format.json { head :no_content }
+      format.html { redirect_to rameurs_url, notice: "Rameur supprimé" }
+      format.json { head :no_content, status: :success }
     end
   end
 
@@ -95,6 +96,13 @@ class RameursController < ApplicationController
           format.html { redirect_to root_url }
           format.json { render 'index', status: :unauthorized }
         end
+      end
+    end
+
+    def admin_rameur
+      unless current_rameur.admin?
+          format.html { redirect_to root_url }
+          format.json { render 'index', status: :unauthorized }
       end
     end
 end

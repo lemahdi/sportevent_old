@@ -9,8 +9,7 @@ class SessionsController < ApplicationController
       if rameur && rameur.authenticate(params[:session][:password])
     		# Sign the rameur in and redirect to the rameur's show page.
     		sign_in rameur
-        flash.now[:notice] = 'Connexion réussie'
-        format.html { redirect_back_or rameur }
+        format.html { redirect_back_or rameur, 'Connexion réussie' }
         format.json { render action: 'show', status: :created, location: rameur }
       else
       	flash.now[:error] = 'Informations erronées'
