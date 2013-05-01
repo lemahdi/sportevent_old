@@ -1,5 +1,6 @@
 class RameursController < ApplicationController
   before_action :set_rameur,       only: [:show, :edit, :update, :destroy]
+  
   before_filter :signed_in_rameur, only: [:edit, :update]
   before_filter :correct_rameur,   only: [:edit, :update]
 
@@ -78,18 +79,22 @@ class RameursController < ApplicationController
     end
 
     def signed_in_rameur
-      respond_to do |format|
-        format.html { redirect_to signin_url,
-                                notice: "Merci de bien vouloir vous identifier" unless signed_in? }
-        format.json { head :no_content }
+      unless signed_in?
+        store_location
+        respond_to do |format|
+          format.html { redirect_to signin_url, notice: 'Merci de bien vouloir vous identifier' }
+          format.json { render 'index', status: :unauthorized }
+        end
       end
     end
 
     def correct_rameur
-      respond_to do |format|
-        set_rameur
-        format.html { redirect_to root_url unless current_rameur?(@rameur) }
-        format.json { head :no_content }
+      set_rameur
+      unless current_rameur?(@rameur)
+        respond_to do |format|
+          format.html { redirect_to root_url }
+          format.json { render 'index', status: :unauthorized }
+        end
       end
     end
 end
