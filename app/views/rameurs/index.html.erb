@@ -2,25 +2,27 @@
 
 <h1>Tous les rameurs</h1>
 
-  <% @rameurs.each do |rameur| %>
-  <div class="row">
-    <div class="span1">
-      <%= gravatar_for rameur %>
-    </div>
-    <div class="span3">
-      <div>
-        <strong><%= rameur.nom %></strong>
-        <strong><%= rameur.prenom %></strong>
+  <ul class="users">
+    <% @rameurs.each do |rameur| %>
+      <div class="row">
+        <div class="span1">
+          <%= gravatar_for rameur %>
+        </div>
+        <div class="span3">
+          <div>
+            <strong><%= rameur.nom %></strong>
+            <strong><%= rameur.prenom %></strong>
+          </div>
+          <div class="nav nav-pills">
+            <%= link_to 'Afficher', rameur %>
+            <%= link_to 'Modifier', edit_rameur_path(rameur) %>
+            <%= link_to 'Détruire', rameur, method: :delete, data: { confirm: 'Etes-vous sûr ?' } %>
+          </div>
+        </div>
       </div>
-      <div class="nav nav-pills">
-        <%= link_to 'Afficher', rameur %>
-        <%= link_to 'Modifier', edit_rameur_path(rameur) %>
-        <%= link_to 'Détruire', rameur, method: :delete, data: { confirm: 'Etes-vous sûr ?' } %>
-      </div>
-    </div>
-  </div>
-  </br>
-  <% end %>
+      </br>
+    <% end %>
+  </ul>
 
 <br />
 
