@@ -17,6 +17,10 @@ module SessionsHelper
 		@current_rameur ||= Rameur.find_by_remember_token(cookies[:remember_token])
 	end
 
+	def current_rameur?(rameur)
+		rameur == current_rameur
+	end
+
 	def sign_out
 		self.current_rameur = nil
 		cookies.delete(:remember_token)

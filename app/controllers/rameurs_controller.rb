@@ -1,5 +1,7 @@
 class RameursController < ApplicationController
-  before_action :set_rameur, only: [:show, :edit, :update, :destroy]
+  before_action :set_rameur,       only: [:show, :edit, :update, :destroy]
+  before_filter :signed_in_rameur, only: [:edit, :update]
+  before_filter :correct_rameur,   only: [:edit, :update]
 
   # GET /rameurs
   # GET /rameurs.json
@@ -19,6 +21,7 @@ class RameursController < ApplicationController
 
   # GET /rameurs/1/edit
   def edit
+    set_rameur
   end
 
   # POST /rameurs
@@ -29,7 +32,7 @@ class RameursController < ApplicationController
     respond_to do |format|
       if @rameur.save
         sign_in @rameur
-        format.html { redirect_to @rameur, notice: 'Vous êtes membre, félicitations.' }
+        format.html { redirect_to @rameur, notice: 'Vous êtes membre, félicitations!' }
         format.json { render action: 'show', status: :created, location: @rameur }
       else
         format.html { render action: 'new' }
@@ -43,8 +46,9 @@ class RameursController < ApplicationController
   def update
     respond_to do |format|
       if @rameur.update(rameur_params)
-        format.html { redirect_to @rameur, notice: 'Informations personnelles mises à jour avec succès.' }
-        format.json { head :no_content }
+        sign_in @rameur
+        format.html { redirect_to @rameur, notice: 'Profil mis à jour avec succès' }
+        format.json { render action: 'show', status: :updated, location: @rameur }
       else
         format.html { render action: 'edit' }
         format.json { render json: @rameur.errors, status: :unprocessable_entity }
@@ -71,5 +75,21 @@ class RameursController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def rameur_params
       params.require(:rameur).permit(:nom, :prenom, :email, :password, :password_confirmation)
+    end
+
+    def signed_in_rameur
+      respond_to do |format|
+        format.html { redirect_to signin_url,
+                                notice: "Merci de bien vouloir vous identifier" unless signed_in? }
+        format.json { head :no_content }
+      end
+    end
+
+    def correct_rameur
+      respond_to do |format|
+        set_rameur
+        format.html { redirect_to root_url unless current_rameur?(@rameur) }
+        format.json { head :no_content }
+      end
     end
 end

@@ -21,9 +21,8 @@ class SessionsController < ApplicationController
 
 	def destroy
 		sign_out
-		flash[:notice] = "Vous avez été déconnecté avec succès"
     respond_to do |format|
-      format.html { redirect_to root_url }
+      format.html { redirect_to root_url, notice: 'Vous avez été déconnecté avec succès' }
       format.json { head :no_content }
     end
 	end

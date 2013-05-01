@@ -4,8 +4,8 @@
       <%= link_to "La Yolette Parisienne", '#', id: "logo" %>
       <nav>
         <ul class="nav pull-right">
-          <li><%= link_to "Accueil",      root_path %></li>
-          <li><%= link_to "Aide",         '#' %></li>
+          <li><%= link_to "Accueil", root_path %></li>
+          <li><%= link_to "Aide",    '#' %></li>
           <% if signed_in? %>
             <li><%= link_to "Rameurs",      rameurs_path %></li>
             <li id="fat-menu" class="dropdown">
@@ -13,8 +13,8 @@
                 Mon compte <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li><%= link_to "Profil", current_rameur %></li>
-                <li><%= link_to "Paramètres", '#' %></li>
+                <li><%= link_to "Profil",     current_rameur %></li>
+                <li><%= link_to "Paramètres", edit_rameur_path(current_rameur) %></li>
                 <li class="diviser"></li>
                 <li>
                   <%= link_to "Déconnexion", signout_path, method: "delete" %>
