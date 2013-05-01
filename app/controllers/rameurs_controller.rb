@@ -28,7 +28,7 @@ class RameursController < ApplicationController
 
     respond_to do |format|
       if @rameur.save
-        format.html { redirect_to @rameur, notice: 'Rameur was successfully created.' }
+        format.html { redirect_to @rameur, notice: 'Vous êtes membre, félicitations.' }
         format.json { render action: 'show', status: :created, location: @rameur }
       else
         format.html { render action: 'new' }
@@ -42,7 +42,7 @@ class RameursController < ApplicationController
   def update
     respond_to do |format|
       if @rameur.update(rameur_params)
-        format.html { redirect_to @rameur, notice: 'Rameur was successfully updated.' }
+        format.html { redirect_to @rameur, notice: 'Informations personnelles mises à jour avec succès.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

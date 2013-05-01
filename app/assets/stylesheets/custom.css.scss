@@ -2,6 +2,12 @@
 
 /* mixins, variables, etc. */
 
+@mixin box_sizing {
+  -moz-box-sizing: border-box; 
+  -webkit-box-sizing: border-box; 
+  box-sizing: border-box;
+}
+
 $grayMediumLight: #eaeaea;
 
 /* universal */
@@ -69,6 +75,10 @@ p {
   padding-top: 9px;
   font-weight: bold;
   line-height: 1;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
 }
 
 #logo:hover {
@@ -100,14 +110,6 @@ footer {
       margin-left: 10px;
     }
   }
-}
-
-/* mixins, variables, etc. */
-
-@mixin box_sizing {
-  -moz-box-sizing: border-box; 
-  -webkit-box-sizing: border-box; 
-  box-sizing: border-box;
 }
 
 /* miscellaneous */
@@ -162,6 +164,10 @@ input, textarea, select, .uneditable-input {
 
 input {
   height: auto !important;
+}
+
+#notice {
+  color: green;
 }
 
 #error_explanation {
