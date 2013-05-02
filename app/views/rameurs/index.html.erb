@@ -18,7 +18,7 @@
           <strong><%= rameur.prenom %></strong>
         </div>
         <div class="nav nav-pills">
-          <%= link_to 'Contacter', "#" %>
+          <!-- <%= link_to 'Contacter', "#" %> -->
           <% if current_rameur.admin? && !current_rameur?(rameur) %>
             <%= link_to 'Afficher', rameur %>
             <%= link_to 'Modifier', edit_rameur_path(rameur) %>
