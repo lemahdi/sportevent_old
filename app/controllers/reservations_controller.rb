@@ -4,7 +4,7 @@ class ReservationsController < ApplicationController
   # GET /reservations
   # GET /reservations.json
   def index
-    @reservations = Reservation.all
+    @reservations = Reservation.order("jour ASC").paginate(page: params[:page], per_page: 30)
   end
 
   # GET /reservations/1
