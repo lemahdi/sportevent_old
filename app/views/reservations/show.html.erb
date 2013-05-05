@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Jour:</strong>
+  <%= @reservation.jour %>
+</p>
+
+<p>
+  <strong>Creaneau:</strong>
+  <%= @reservation.creaneau %>
+</p>
+
+<p>
+  <strong>Aviron:</strong>
+  <%= @reservation.aviron %>
+</p>
+
+<p>
+  <strong>Confirmation:</strong>
+  <%= @reservation.confirmation %>
+</p>
+
+
+<%= link_to 'Edit', edit_reservation_path(@reservation) %> |
+<%= link_to 'Back', reservations_path %>

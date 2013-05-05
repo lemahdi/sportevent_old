@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  jour: 2013-05-05
+  creaneau_id: 
+  aviron_id: 
+  confirmation: false
+
+two:
+  jour: 2013-05-05
+  creaneau_id: 
+  aviron_id: 
+  confirmation: false
