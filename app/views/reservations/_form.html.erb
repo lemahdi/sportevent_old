@@ -1,33 +1,44 @@
-<%= form_for(@reservation) do |f| %>
-  <% if @reservation.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@reservation) do |f| %>
+      <% if @reservation.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
 
-      <ul>
-      <% @reservation.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+          <ul>
+          <% @reservation.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :jour %><br />
-    <%= f.date_select :jour %>
+      <div class="field">
+        <%= f.label :jour %><br />
+        <%= f.date_select :jour %>
+        <!-- <div class="input-append date datepicker" date-date="#{Date.today.strftime('%d-%m-%Y')}" %> data-date-format="dd-mm-yyyy">
+          <input size="16" type="text" value="#{Date.today.strftime('%d-%m-%Y')}" %> readonly>
+          <span class="add-on">
+            <i class="icon-th"></i>
+          </span>
+        </div>
+         f.datepicker :jour %> -->
+      </div>
+      <div class="field">
+        <%= f.label :creneau %><br />
+        <%= f.text_field :creneau %>
+      </div>
+      <div class="field">
+        <%= f.label :aviron %><br />
+        <%= f.text_field :aviron %>
+      </div>
+      <!-- <div class="field">
+        <%= f.label :confirmation %><br />
+        <%= f.check_box :confirmation %>
+      </div> -->
+      <div class="actions">
+        <%= f.submit "Réserver", class: "btn btn-large btn-primary" %>
+      </div>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :creneau %><br />
-    <%= f.text_field :creneau %>
-  </div>
-  <div class="field">
-    <%= f.label :aviron %><br />
-    <%= f.text_field :aviron %>
-  </div>
-  <div class="field">
-    <%= f.label :confirmation %><br />
-    <%= f.check_box :confirmation %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

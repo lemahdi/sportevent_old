@@ -9,6 +9,7 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'protected_attributes'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+gem 'bootstrap-datepicker-rails'
 
 gem 'pg'
 

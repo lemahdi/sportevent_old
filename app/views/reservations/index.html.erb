@@ -27,6 +27,31 @@
         <td><button type="button" class="btn btn-small disabled">Participer</button></td>
       </tr>
       <% end %>
+      <%= form_for(:reservation, url: reservations_path) do |f| %>
+      <tr>
+        <th>
+          <div class="field">
+            <%= f.select :jour, [["un", 1], ["deux", 2]] %>
+          </div>
+        </th>
+        <th>
+          <div class="field">
+            <!-- use a helper here in order to get créneau times from database -->
+            <%= f.select :creneau, [["un", 1], ["deux", 2]] %>
+          </div>
+        </th>
+        <th>
+          <div class="field">
+            <!-- use a helper here in order to get avirons descriptions from database -->
+            <%= f.select :aviron, [["simple", 1], ["double", 2], ["yolette", 4]] %>
+          </div>
+        </th>
+        <th></th>
+        <th>
+          <%= f.submit "Réserver", class: "btn btn-small disabled" %>
+        </th>
+      </tr>
+      <% end %>
     </tbody>
   </table>
 </div>
