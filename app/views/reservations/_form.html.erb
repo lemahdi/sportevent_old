@@ -15,14 +15,11 @@
 
       <div class="field">
         <%= f.label :jour %><br />
-        <%= f.date_select :jour %>
-        <!-- <div class="input-append date datepicker" date-date="#{Date.today.strftime('%d-%m-%Y')}" %> data-date-format="dd-mm-yyyy">
-          <input size="16" type="text" value="#{Date.today.strftime('%d-%m-%Y')}" %> readonly>
-          <span class="add-on">
-            <i class="icon-th"></i>
-          </span>
-        </div>
-         f.datepicker :jour %> -->
+        <%= f.text_field :jour, class: "input-append date datepicker", value: "#{Date.today.strftime('%d-%m-%Y')}" %>
+        <!-- div class="input-append date datepicker">
+          <input size="16" type="text" value= <%= "06-05-2013" %> >
+          <span class="add-on"><i class="icon-th"></i></span>
+        </div -->
       </div>
       <div class="field">
         <%= f.label :creneau %><br />
@@ -37,7 +34,7 @@
         <%= f.check_box :confirmation %>
       </div> -->
       <div class="actions">
-        <%= f.submit "Réserver", class: "btn btn-large btn-primary" %>
+        <!-- %= f.submit "Réserver", class: "btn btn-large btn-primary" % -->
       </div>
     <% end %>
   </div>
