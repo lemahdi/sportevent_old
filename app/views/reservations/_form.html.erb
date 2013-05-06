@@ -23,11 +23,11 @@
       </div>
       <div class="field">
         <%= f.label :creneau %><br />
-        <%= f.text_field :creneau %>
+        <%= f.select :creneau, creneau_times %>
       </div>
       <div class="field">
         <%= f.label :aviron %><br />
-        <%= f.text_field :aviron %>
+        <%= f.select :aviron, aviron_types %>
       </div>
       <!-- <div class="field">
         <%= f.label :confirmation %><br />
