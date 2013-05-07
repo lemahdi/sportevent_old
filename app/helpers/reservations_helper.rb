@@ -5,13 +5,14 @@ module ReservationsHelper
 	end
 
 	def creneau_times
-		simple_double = Creneau.order('debut ASC').map do |creneau|
+		creneaux = Creneau.order('debut ASC')
+		simple_double = creneaux.map do |creneau|
 			["#{creneau.debut.strftime('%H:%M')}-#{creneau.fin.strftime('%H:%M')}", creneau.id] if creneau.fin-creneau.debut == 45.minutes
 		end.select { |c| c }
-		yolette = Creneau.order('debut ASC').map do |creneau|
+		yolette = creneaux.map do |creneau|
 			["#{creneau.debut.strftime('%H:%M')}-#{creneau.fin.strftime('%H:%M')}", creneau.id] if creneau.fin-creneau.debut == 1.hour
 		end.select { |c| c }
 
-		[["horaires simple et double", nil]] + simple_double + [["horaires yolette", nil]] + yolette
+		[["--- horaires simple et double ---", nil]] + simple_double + [["--- horaires yolette ---", nil]] + yolette
 	end
 end
