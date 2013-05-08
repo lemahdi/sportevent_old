@@ -78,31 +78,4 @@ class RameursController < ApplicationController
     def rameur_params
       params.require(:rameur).permit(:nom, :prenom, :email, :password, :password_confirmation)
     end
-
-    def signed_in_rameur
-      unless signed_in?
-        store_location
-        respond_to do |format|
-          format.html { redirect_to signin_url, notice: 'Merci de bien vouloir vous identifier' }
-          format.json { render 'index', status: :unauthorized }
-        end
-      end
-    end
-
-    def correct_rameur
-      set_rameur
-      unless current_rameur?(@rameur)
-        respond_to do |format|
-          format.html { redirect_to root_url }
-          format.json { render 'index', status: :unauthorized }
-        end
-      end
-    end
-
-    def admin_rameur
-      unless current_rameur.admin?
-          format.html { redirect_to root_url }
-          format.json { render 'index', status: :unauthorized }
-      end
-    end
 end

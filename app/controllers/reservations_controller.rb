@@ -1,10 +1,12 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
+  
+  before_filter :signed_in_rameur, only: [:index, :new, :create]
 
   # GET /reservations
   # GET /reservations.json
   def index
-    @reservations = Reservation.order("jour ASC").paginate(page: params[:page], per_page: 30)
+    @reservations = Reservation.where("jour >= ?", Date.today).paginate(page: params[:page], per_page: 30)
   end
 
   # GET /reservations/1
@@ -28,7 +30,7 @@ class ReservationsController < ApplicationController
 
     respond_to do |format|
       if @reservation.save
-        format.html { redirect_to @reservation, notice: 'Reservation was successfully created.' }
+        format.html { redirect_to @reservation, notice: 'Reservation ajoutée' }
         format.json { render action: 'show', status: :created, location: @reservation }
       else
         format.html { render action: 'new' }
@@ -42,7 +44,7 @@ class ReservationsController < ApplicationController
   def update
     respond_to do |format|
       if @reservation.update(reservation_params)
-        format.html { redirect_to @reservation, notice: 'Reservation was successfully updated.' }
+        format.html { redirect_to @reservation, notice: 'Reservation mise à jour' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
