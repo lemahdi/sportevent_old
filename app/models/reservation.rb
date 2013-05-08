@@ -1,5 +1,5 @@
 class Reservation < ActiveRecord::Base
-  attr_accessible :jour, :creneau, :aviron, :confirmation
+  attr_accessible :jour, :creneau_id, :aviron_id, :confirmation
   belongs_to :creneau
   belongs_to :aviron
 

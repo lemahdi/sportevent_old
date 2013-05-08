@@ -1,7 +1,9 @@
 module ReservationsHelper
 	
 	def aviron_types
-		Aviron.uniq(:nbplaces).order("nbplaces ASC").map { |aviron| aviron.description }
+		Aviron.uniq(:nbplaces).order("nbplaces ASC").map do |aviron|
+			[aviron.description, aviron.id]
+		end
 	end
 
 	def creneau_times
