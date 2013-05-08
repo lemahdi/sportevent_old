@@ -16,7 +16,7 @@
       <div class="row reservations">
         <div class="span2 field">
           <%= f.label :jour %><br />
-          <%= f.text_field :jour, class: "input-append date datepicker", value: "#{Date.today.strftime('%d-%m-%Y')}" %>
+          <%= f.text_field :jour, class: "input-append date datepicker", value: default_jour(@reservation) %>
           <!-- div class="input-append date datepicker">
             <input size="16" type="text" value= <%= "06-05-2013" %> >
             <span class="add-on"><i class="icon-th"></i></span>

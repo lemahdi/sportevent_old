@@ -33,7 +33,7 @@ class ReservationsController < ApplicationController
         format.html { redirect_to reservations_url, notice: 'Reservation enregistrée' }
         format.json { render action: 'index', status: :created, location: reservations_url }
       else
-        format.html { render action: 'new' }
+        format.html { render action: 'new', locals: { jour: @reservation.jour } }
         format.json { render json: @reservation.errors, status: :unprocessable_entity }
       end
     end

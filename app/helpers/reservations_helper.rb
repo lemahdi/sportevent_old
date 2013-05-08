@@ -17,4 +17,12 @@ module ReservationsHelper
 
 		[["--- horaires simple et double ---", nil]] + simple_double + [["--- horaires yolette ---", nil]] + yolette
 	end
+
+	def default_jour(reservation)
+		if reservation.nil? || reservation.jour.nil?
+			Date.today.strftime('%d-%m-%Y')
+		else
+			reservation.jour.strftime('%d-%m-%Y')
+		end
+	end
 end
