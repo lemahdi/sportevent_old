@@ -183,9 +183,9 @@ input {
   @extend .error;
 }
 
-/* users index */
+/* rameurs index */
 
-.users {
+.rameurs {
   list-style: none;
   margin: 0;
   li {
@@ -194,6 +194,18 @@ input {
     border-top: 1px solid $grayLighter;
     &:last-child {
       border-bottom: 1px solid $grayLighter;
+    }
+  }
+}
+
+/* new reservations */
+
+.reservations {
+  .field {
+    text-align: center;
+    /*color: $blue;*/
+    .datepicker {
+      text-align: center;
     }
   }
 }
