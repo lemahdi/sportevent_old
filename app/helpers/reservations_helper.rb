@@ -25,4 +25,8 @@ module ReservationsHelper
 			reservation.jour.strftime('%d-%m-%Y')
 		end
 	end
+
+	def is_new_reservation(reservation)
+		reservation.id == flash[:new_reservation]
+	end
 end

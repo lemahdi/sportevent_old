@@ -19,14 +19,25 @@
         <th></th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="reservation">
       <% @reservations.each do |reservation| %>
       <tr>
-        <td><%= reservation.jour.strftime("%d/%m/%y") %></td>
-        <td><%= "#{reservation.creneau.debut.strftime('%H:%M')}-#{reservation.creneau.fin.strftime('%H:%M')}" %></td>
-        <td><%= reservation.aviron.description %></td>
-        <td>Mahdi, Ghada, Tarik, Maha</td>
-        <td><button type="button" class="btn btn-small disabled">Participer</button></td>
+        <% is_new_resa = is_new_reservation(reservation) %>
+        <td class=<%= "new_resa" if is_new_resa %> >
+          <%= reservation.jour.strftime("%d/%m/%y") %>
+        </td>
+        <td class=<%= "new_resa" if is_new_resa %> >
+          <%= "#{reservation.creneau.debut.strftime('%H:%M')}-#{reservation.creneau.fin.strftime('%H:%M')}" %>
+        </td>
+        <td class=<%= "new_resa" if is_new_resa %> >
+          <%= reservation.aviron.description %>
+        </td>
+        <td class=<%= "new_resa" if is_new_resa %> >
+          Mahdi, Ghada, Tarik, Maha
+        </td>
+        <td>
+          <button type="button" class="btn btn-small disabled">Participer</button>
+        </td>
       </tr>
       <% end %>
     </tbody>
