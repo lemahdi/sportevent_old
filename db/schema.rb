@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130505145806) do
+ActiveRecord::Schema.define(version: 20130509184803) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 20130505145806) do
 
   add_index "rameurs", ["email"], name: "index_rameurs_on_email", unique: true
   add_index "rameurs", ["remember_token"], name: "index_rameurs_on_remember_token"
+
+  create_table "registres", force: true do |t|
+    t.integer  "rameur_id"
+    t.integer  "reservation_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "registres", ["rameur_id"], name: "index_registres_on_rameur_id"
+  add_index "registres", ["reservation_id"], name: "index_registres_on_reservation_id"
 
   create_table "reservations", force: true do |t|
     t.date     "jour"
