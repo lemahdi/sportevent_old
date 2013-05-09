@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  rameur_id: 
+  reservation_id: 
+
+two:
+  rameur_id: 
+  reservation_id: 

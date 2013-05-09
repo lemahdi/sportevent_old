@@ -1,6 +1,9 @@
 class Rameur < ActiveRecord::Base
 	attr_accessible :nom, :prenom, :email,
 									:password, :password_confirmation
+
+	has_many :registres
+	has_many :reservations, through: :registres
 	has_secure_password
 
 	before_save { email.downcase! }
