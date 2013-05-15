@@ -6,7 +6,7 @@ class ReservationsController < ApplicationController
   # GET /reservations
   # GET /reservations.json
   def index
-    @reservations = Reservation.where("jour >= ?", Date.today).paginate(page: params[:page], per_page: 30)
+    @reservations = Reservation.recent.asc("jour").paginate(page: params[:page], per_page: 30)
   end
 
   # GET /reservations/1
@@ -30,6 +30,8 @@ class ReservationsController < ApplicationController
 
     respond_to do |format|
       if @reservation.save
+        @reservation.rameurs << current_rameur
+        @reservation.save
         flash[:new_reservation] = @reservation.id
         format.html { redirect_to reservations_url, notice: 'Reservation enregistrée' }
         format.json { render action: 'index', status: :created, location: reservations_url }
@@ -72,6 +74,6 @@ class ReservationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reservation_params
-      params.require(:reservation).permit(:jour, :creneau_id, :aviron_id, :confirmation)
+      params.require(:reservation).permit(:jour, :creneau_id, :aviron_id)
     end
 end

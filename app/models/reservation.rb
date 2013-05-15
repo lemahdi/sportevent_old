@@ -3,12 +3,13 @@ class Reservation < ActiveRecord::Base
 
   belongs_to :creneau
   belongs_to :aviron
-  has_many :registres
+  has_many :registres, dependent: :destroy
   has_many :rameurs, through: :registres
 
   validates :jour, presence: true
-  validates :creneau, presence: true
-  validates :aviron, presence: true
+  validates :creneau_id, presence: true
+  validates :aviron_id, presence: true
 
-  default_scope order: 'reservations.jour ASC'
+  scope :recent, -> { where("reservations.jour >= ?", Date.today) }
+  scope :asc,    -> attr { order("reservations.#{attr} ASC") }
 end

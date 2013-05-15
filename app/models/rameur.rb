@@ -18,6 +18,8 @@ class Rameur < ActiveRecord::Base
 	validates :password, presence: true, length: { minimum: 6 }
 	validates :password_confirmation, presence: true
 
+  scope :asc, -> attr { order("rameurs.#{attr} ASC") }
+
 	private
 		def create_remember_token
 			self.remember_token = SecureRandom.urlsafe_base64
