@@ -26,7 +26,7 @@
           <td><%= reservation.jour.strftime("%d/%m/%y") %></td>
           <td><%= "#{reservation.creneau.debut.strftime('%H:%M')}-#{reservation.creneau.fin.strftime('%H:%M')}" %></td>
           <td><%= reservation.aviron.description %></td>
-          <td>Mahdi, Ghada, Tarik, Maha</td>
+          <td><%= equipage(reservation) %></td>
           <td><button type="button" class="btn btn-small disabled">Participer</button></td>
         </tr>
       <% end %>

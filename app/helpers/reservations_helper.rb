@@ -31,4 +31,10 @@ module ReservationsHelper
 	def is_new_reservation(reservation)
 		reservation.id == flash[:new_reservation]
 	end
+
+	def equipage(reservation)
+		reservation.rameurs.map do |rameur|
+      rameur.prenom
+    end.join(",")
+	end
 end
