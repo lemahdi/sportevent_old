@@ -31,10 +31,15 @@ class ReservationsController < ApplicationController
     respond_to do |format|
       if @reservation.save
         @reservation.rameurs << current_rameur
-        @reservation.save
-        flash[:new_reservation] = @reservation.id
-        format.html { redirect_to reservations_url, notice: 'Reservation enregistrée' }
-        format.json { render action: 'index', status: :created, location: reservations_url }
+        if @reservation.save
+          flash[:new_reservation] = @reservation.id
+          format.html { redirect_to reservations_url, notice: 'Reservation enregistrée' }
+          format.json { render action: 'index', status: :created, location: reservations_url }
+        else
+          @reservation.destroy
+          format.html { render action: 'new', locals: { jour: @reservation.jour } }
+          format.json { render json: @reservation.errors, status: :unprocessable_entity }
+        end
       else
         format.html { render action: 'new', locals: { jour: @reservation.jour } }
         format.json { render json: @reservation.errors, status: :unprocessable_entity }
