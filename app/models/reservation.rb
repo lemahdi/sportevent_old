@@ -9,7 +9,13 @@ class Reservation < ActiveRecord::Base
   validates :jour, presence: true
   validates :creneau_id, presence: true
   validates :aviron_id, presence: true
+  validate :empty_place
 
   scope :recent, -> { where("reservations.jour >= ?", Date.today) }
   scope :asc,    -> attr { order("reservations.#{attr} ASC") }
+
+  private
+    def empty_place
+      errors.add(:aviron, "Aviron #{aviron.id} is full") if self.rameurs.size > self.aviron.nbplaces
+    end
 end
