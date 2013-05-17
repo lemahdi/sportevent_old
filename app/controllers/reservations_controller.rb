@@ -1,7 +1,7 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
   
-  before_filter :signed_in_rameur, only: [:index, :new, :create]
+  before_filter :signed_in_rameur, only: [:index, :new, :create, :update]
 
   # GET /reservations
   # GET /reservations.json
@@ -30,15 +30,11 @@ class ReservationsController < ApplicationController
 
     respond_to do |format|
       if @reservation.save
-        if @reservation.rameurs << current_rameur
-          flash[:new_reservation] = @reservation.id
-          format.html { redirect_to reservations_url, notice: 'Reservation enregistrée' }
-          format.json { render action: 'index', status: :created, location: reservations_url }
-        else
-          @reservation.destroy
-          format.html { render action: 'new', locals: { jour: @reservation.jour } }
-          format.json { render json: @reservation.errors, status: :unprocessable_entity }
-        end
+        @reservation.rameurs << current_rameur
+        flash[:new_reservation] = @reservation.id
+
+        format.html { redirect_to reservations_url, notice: 'Reservation enregistrée' }
+        format.json { render action: 'index', status: :created, location: reservations_url }
       else
         format.html { render action: 'new', locals: { jour: @reservation.jour } }
         format.json { render json: @reservation.errors, status: :unprocessable_entity }
@@ -48,17 +44,20 @@ class ReservationsController < ApplicationController
 
   # PATCH/PUT /reservations/1
   # PATCH/PUT /reservations/1.json
-  # def update
-  #   respond_to do |format|
-  #     if @reservation.update(reservation_params)
-  #       format.html { redirect_to @reservation, notice: 'Reservation mise à jour' }
-  #       format.json { head :no_content }
-  #     else
-  #       format.html { render action: 'edit' }
-  #       format.json { render json: @reservation.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
+  def update
+    respond_to do |format|
+      if !already_subscribed?(current_rameur, @reservation)
+        @reservation.rameurs << current_rameur
+        flash[:new_reservation] = @reservation.id
+
+        format.html { redirect_to reservations_url, notice: "Félicitations, vous faites partie de l'équipage" }
+        format.json { render action: 'index', status: :updated, location: reservations_url }
+      else
+        format.html { render action: 'index' }
+        format.json { render json: @reservation.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # DELETE /reservations/1
   # DELETE /reservations/1.json

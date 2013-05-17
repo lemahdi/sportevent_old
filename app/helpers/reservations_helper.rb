@@ -37,4 +37,15 @@ module ReservationsHelper
       rameur.prenom
     end.join(",")
 	end
+
+	def empty_place?(reservation)
+		reservation.aviron.nbplaces > reservation.rameurs.size
+	end
+
+	def already_subscribed?(rameur, reservation)
+		reservation.rameurs.each do |r|
+			return true if r.id == rameur.id
+		end
+		false
+	end
 end
