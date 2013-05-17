@@ -30,7 +30,7 @@ GEM
     bcrypt-ruby (3.0.1)
     bootstrap-datepicker-rails (1.0.0.5)
       railties (>= 3.0)
-    bootstrap-sass (2.3.1.1)
+    bootstrap-sass (2.3.1.0)
       sass (~> 3.2)
     bootstrap-will_paginate (0.0.9)
       will_paginate
@@ -84,7 +84,7 @@ GEM
     rake (10.0.4)
     rdoc (3.12.2)
       json (~> 1.4)
-    sass (3.2.8)
+    sass (3.2.9)
     sass-rails (4.0.0.rc1)
       railties (>= 4.0.0.beta, < 5.0)
       sass (>= 3.1.10)
@@ -120,7 +120,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt-ruby (= 3.0.1)
   bootstrap-datepicker-rails
-  bootstrap-sass (= 2.3.1.1)
+  bootstrap-sass (= 2.3.1.0)
   bootstrap-will_paginate
   coffee-rails (~> 4.0.0.beta1)
   jbuilder (~> 1.0.1)
