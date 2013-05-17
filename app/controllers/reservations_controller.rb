@@ -46,16 +46,19 @@ class ReservationsController < ApplicationController
   # PATCH/PUT /reservations/1.json
   def update
     respond_to do |format|
-      if !already_subscribed?(current_rameur, @reservation)
+      if params[:participate] == "yes"
         @reservation.rameurs << current_rameur
-        flash[:new_reservation] = @reservation.id
 
-        format.html { redirect_to reservations_url, notice: "Félicitations, vous faites partie de l'équipage" }
-        format.json { render action: 'index', status: :updated, location: reservations_url }
+        flash[:new_reservation] = @reservation.id
+        message = "Félicitations, vous faites partie de l'équipage"
       else
-        format.html { render action: 'index' }
-        format.json { render json: @reservation.errors, status: :unprocessable_entity }
+        @reservation.rameurs.delete(current_rameur)
+
+        message = "Vous avez quitté l'équipage"
       end
+
+      format.html { redirect_to reservations_url, notice: message }
+      format.json { render action: 'index', status: :updated, location: reservations_url }
     end
   end
 

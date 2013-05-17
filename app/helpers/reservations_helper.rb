@@ -35,7 +35,7 @@ module ReservationsHelper
 	def equipage(reservation)
 		reservation.rameurs.map do |rameur|
       rameur.prenom
-    end.join(",")
+    end.join(", ")
 	end
 
 	def empty_place?(reservation)

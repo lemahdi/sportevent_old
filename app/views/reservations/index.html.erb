@@ -27,11 +27,18 @@
           <td><%= "#{reservation.creneau.debut.strftime('%H:%M')}-#{reservation.creneau.fin.strftime('%H:%M')}" %></td>
           <td><%= reservation.aviron.description %></td>
           <td><%= equipage(reservation) %></td>
-          <%= form_tag reservation_path(reservation), method: :put do %>
-          <td>
-            <%= submit_tag "Participer", disabled: !empty_place?(reservation) || already_subscribed?(current_rameur, reservation), class: "btn btn-small" %>
-          </td>
+
+          <% action_st = "Participer"; disable_st = false; participate_hft = "yes" %>
+          <% if already_subscribed?(current_rameur, reservation) %>
+            <% action_st = "Désister"; participate_hft = "no" %>
+          <% elsif !empty_place?(reservation) %>
+            <% disable_st = true %>
           <% end %>
+          <%= form_tag reservation_path(reservation), method: :put do %>
+            <%= hidden_field_tag :participate, participate_hft %>
+            <td><%= submit_tag action_st, disabled: disable_st, class: "btn btn-small" %></td>
+          <% end %>
+
         </tr>
       <% end %>
     </tbody>
