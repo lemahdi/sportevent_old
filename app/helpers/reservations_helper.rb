@@ -28,7 +28,7 @@ module ReservationsHelper
 		end
 	end
 
-	def is_new_reservation(reservation)
+	def new_reservation?(reservation)
 		reservation.id == flash[:new_reservation]
 	end
 
@@ -42,10 +42,45 @@ module ReservationsHelper
 		reservation.aviron.nbplaces > reservation.rameurs.size
 	end
 
-	def already_subscribed?(rameur, reservation)
+	def subscribed?(reservation)
 		reservation.rameurs.each do |r|
-			return true if r.id == rameur.id
+			return true if r.id == current_rameur.id
 		end
 		false
+	end
+
+	def resa_class(reservation)
+		is_new_resa = new_reservation?(reservation)
+		is_empty_place = empty_place?(reservation)
+		days_left = (reservation.jour - Date.today).days
+
+		resa_class = []
+		resa_class << "new_resa" if is_new_resa
+		if is_empty_place && days_left<=1.day
+			resa_class << "error"
+		elsif is_empty_place && days_left<=1.week
+			resa_class << "warning"
+		elsif !is_empty_place
+			resa_class << "success"
+		end
+
+		resa_class * " "
+	end
+
+	def build_button(reservation)
+		button_params = {}
+		button_params[:participate] = "yes"
+		button_params[:text] = "Participer"
+		button_params[:disabled] = false
+
+		if subscribed?(reservation)
+			button_params[:participate] = "no"
+			button_params[:text] = "Désister"
+		elsif !empty_place?(reservation)
+			button_params[:participate] = "no"
+			button_params[:disabled] = true
+		end
+
+		return button_params
 	end
 end

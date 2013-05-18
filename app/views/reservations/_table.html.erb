@@ -1,0 +1,28 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Jour</th>
+      <th>Créneau</th>
+      <th>Aviron</th>
+      <th>Rameurs</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody class="reservation">
+    <% @reservations.each do |reservation| %>
+      <tr class=<%= resa_class(reservation) %> >
+        <td><%= reservation.jour.strftime("%d/%m/%y") %></td>
+        <td><%= "#{reservation.creneau.debut.strftime('%H:%M')}-#{reservation.creneau.fin.strftime('%H:%M')}" %></td>
+        <td><%= reservation.aviron.description %></td>
+        <td><%= equipage(reservation) %></td>
+
+        <% button_params = build_button(reservation) %>
+        <%= form_tag reservation_path(reservation), method: :put do %>
+          <%= hidden_field_tag :participate, button_params[:participate] %>
+          <td><%= submit_tag button_params[:text], disabled: button_params[:disabled], class: "btn btn-small" %></td>
+        <% end %>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>

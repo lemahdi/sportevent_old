@@ -9,40 +9,7 @@
 <%= will_paginate %>
 
 <div class="center hero-unit">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Jour</th>
-        <th>Créneau</th>
-        <th>Aviron</th>
-        <th>Rameurs</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody class="reservation">
-      <% @reservations.each do |reservation| %>
-        <% is_new_resa = is_new_reservation(reservation) %>
-        <tr class=<%= "new_resa" if is_new_resa %> >
-          <td><%= reservation.jour.strftime("%d/%m/%y") %></td>
-          <td><%= "#{reservation.creneau.debut.strftime('%H:%M')}-#{reservation.creneau.fin.strftime('%H:%M')}" %></td>
-          <td><%= reservation.aviron.description %></td>
-          <td><%= equipage(reservation) %></td>
-
-          <% action_st = "Participer"; disable_st = false; participate_hft = "yes" %>
-          <% if already_subscribed?(current_rameur, reservation) %>
-            <% action_st = "Désister"; participate_hft = "no" %>
-          <% elsif !empty_place?(reservation) %>
-            <% disable_st = true %>
-          <% end %>
-          <%= form_tag reservation_path(reservation), method: :put do %>
-            <%= hidden_field_tag :participate, participate_hft %>
-            <td><%= submit_tag action_st, disabled: disable_st, class: "btn btn-small" %></td>
-          <% end %>
-
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <%= render 'table' %>
 </div>
 
 <br />
