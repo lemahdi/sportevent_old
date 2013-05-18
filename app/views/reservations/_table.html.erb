@@ -10,7 +10,7 @@
   </thead>
   <tbody class="reservation">
     <% @reservations.each do |reservation| %>
-      <tr class=<%= resa_class(reservation) %> >
+      <tr class="<%= resa_class(reservation) %>" >
         <td><%= reservation.jour.strftime("%d/%m/%y") %></td>
         <td><%= "#{reservation.creneau.debut.strftime('%H:%M')}-#{reservation.creneau.fin.strftime('%H:%M')}" %></td>
         <td><%= reservation.aviron.description %></td>
