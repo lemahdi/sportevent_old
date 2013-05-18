@@ -12,17 +12,26 @@
     <% @reservations.each do |reservation| %>
       <tr class="<%= resa_class(reservation) %>" >
         <td><%= reservation.jour.strftime("%d/%m/%y") %></td>
-        <td><%= "#{reservation.creneau.debut.strftime('%H:%M')}-#{reservation.creneau.fin.strftime('%H:%M')}" %></td>
+        <td><%= display_creneau(reservation.creneau) %></td>
         <td><%= reservation.aviron.description %></td>
         <td><%= equipage(reservation) %></td>
 
         <% button_params = build_button(reservation) %>
         <%= form_tag reservation_path(reservation), method: button_params[:action] do %>
           <%= hidden_field_tag :participate, button_params[:participate] %>
-          <td><%= submit_tag button_params[:text], disabled: button_params[:disabled], class: "btn btn-small" %></td>
+          <td>
+            <%= submit_tag button_params[:text], disabled: button_params[:disabled], class: "btn btn-small" %>
+          </td>
         <% end %>
 
       </tr>
     <% end %>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><%= link_to "Proposer", new_reservation_path, class: "btn btn-small" %></td>
+    </tr>
   </tbody>
 </table>

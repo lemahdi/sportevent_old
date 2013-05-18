@@ -20,6 +20,10 @@ module ReservationsHelper
 		[["--- horaires simple et double ---", nil]] + simple_double + [["--- horaires yolette ---", nil]] + yolette
 	end
 
+	def display_creneau(creneau)
+		"#{creneau.debut.strftime('%H:%M')}-#{creneau.fin.strftime('%H:%M')}"
+	end
+
 	def mem_jour(reservation)
 		if reservation.nil? || reservation.jour.nil?
 			Date.today.strftime('%d-%m-%Y')
@@ -77,7 +81,7 @@ module ReservationsHelper
 		if subscribed?(reservation)
 			button_params[:participate] = "no"
 			button_params[:action]      = :delete if reservation.rameurs.size == 1
-			button_params[:text]        = "Désister"
+			button_params[:text]        = "Désister  "
 		elsif !empty_place?(reservation)
 			button_params[:participate] = "no"
 			button_params[:disabled]    = true
