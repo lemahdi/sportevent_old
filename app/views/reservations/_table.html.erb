@@ -17,7 +17,7 @@
         <td><%= equipage(reservation) %></td>
 
         <% button_params = build_button(reservation) %>
-        <%= form_tag reservation_path(reservation), method: :put do %>
+        <%= form_tag reservation_path(reservation), method: button_params[:action] do %>
           <%= hidden_field_tag :participate, button_params[:participate] %>
           <td><%= submit_tag button_params[:text], disabled: button_params[:disabled], class: "btn btn-small" %></td>
         <% end %>

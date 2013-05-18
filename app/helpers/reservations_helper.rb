@@ -70,15 +70,17 @@ module ReservationsHelper
 	def build_button(reservation)
 		button_params = {}
 		button_params[:participate] = "yes"
-		button_params[:text] = "Participer"
-		button_params[:disabled] = false
+		button_params[:action]      = :put
+		button_params[:text]        = "Participer"
+		button_params[:disabled]    = false
 
 		if subscribed?(reservation)
 			button_params[:participate] = "no"
-			button_params[:text] = "Désister"
+			button_params[:action]      = :delete if reservation.rameurs.size == 1
+			button_params[:text]        = "Désister"
 		elsif !empty_place?(reservation)
 			button_params[:participate] = "no"
-			button_params[:disabled] = true
+			button_params[:disabled]    = true
 		end
 
 		return button_params
