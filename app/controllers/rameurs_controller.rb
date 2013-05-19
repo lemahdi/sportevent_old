@@ -9,6 +9,18 @@ class RameursController < ApplicationController
   # GET /rameurs.json
   def index
     @rameurs = Rameur.asc("prenom").asc("nom").paginate(page: params[:page], per_page: 5)
+
+    respond_to do |format|
+      format.html { @rameurs }
+      format.json {
+        render :json => {
+          :current_page => @rameurs.current_page,
+          :per_page => @rameurs.per_page,
+          :total_entries => @rameurs.total_entries,
+          :entries => @rameurs
+        }
+      }
+    end
   end
 
   # GET /rameurs/1
