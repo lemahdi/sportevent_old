@@ -46,6 +46,9 @@ class RameursController < ApplicationController
     respond_to do |format|
       if @rameur.save
         sign_in @rameur
+        # Tell the UserMailer to send a welcome Email after save
+        UserMailer.welcome_email(@rameur).deliver
+
         format.html { redirect_to @rameur, notice: 'Vous êtes membre, félicitations!' }
         format.json { render action: 'show', status: :created, location: @rameur }
       else

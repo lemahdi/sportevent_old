@@ -30,7 +30,7 @@
           <% if current_rameur.admin? && !current_rameur?(rameur) %>
             <%= link_to 'Afficher', rameur %>
             <%= link_to 'Modifier', edit_rameur_path(rameur) %>
-            <%= link_to 'Détruire', rameur, method: :delete, data: { confirm: 'Etes-vous sûr ?' } %>
+            <%= link_to 'Supprimer', rameur, method: :delete, data: { confirm: 'Etes-vous sûr ?' } %>
           <% end %>
         </div>
       </div>
