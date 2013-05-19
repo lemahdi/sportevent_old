@@ -8,6 +8,18 @@ class ReservationsController < ApplicationController
   # GET /reservations.json
   def index
     @reservations = Reservation.recent.asc("jour").paginate(page: params[:page], per_page: 30)
+
+    respond_to do |format|
+      format.html { @reservations }
+      format.json {
+        render :json => {
+          :current_page => @reservations.current_page,
+          :per_page => @reservations.per_page,
+          :total_entries => @reservations.total_entries,
+          :entries => @reservations
+        }
+      }
+    end
   end
 
   # GET /reservations/1
@@ -37,7 +49,7 @@ class ReservationsController < ApplicationController
         format.html { redirect_to reservations_url, notice: 'Reservation enregistrée' }
         format.json { render action: 'index', status: :created, location: reservations_url }
       else
-        format.html { render action: 'new', locals: { jour: @reservation.jour } }
+        format.html { render action: 'new' }
         format.json { render json: @reservation.errors, status: :unprocessable_entity }
       end
     end
@@ -66,8 +78,8 @@ class ReservationsController < ApplicationController
   def destroy
     @reservation.destroy
     respond_to do |format|
-      format.html { redirect_to reservations_url }
-      format.json { head :no_content }
+      format.html { redirect_to reservations_url, notice: "Réservation annulée" }
+      format.json { head :no_content, status: :success }
     end
   end
 
