@@ -1,8 +1,8 @@
 class ReservationsController < ApplicationController
-  before_action :set_reservation,      only: [:show, :edit, :update, :destroy]
+  before_action :set_reservation,  only: [:show, :edit, :update, :destroy]
   
-  before_filter :signed_in_rameur,     only: [:index, :new, :create, :update, :destroy]
-  before_filter :check_creneau_aviron, only: :create
+  before_filter :signed_in_rameur, only: [:index, :new, :create, :update, :destroy]
+  before_filter :check_params,     only: :create
 
   # GET /reservations
   # GET /reservations.json
@@ -85,13 +85,22 @@ class ReservationsController < ApplicationController
     end
 
     # Check the conformity of the crenau with the aviron type
-    def check_creneau_aviron
+    def check_params
+      jour = reservation_params[:jour]
       creneau_id = reservation_params[:creneau_id]
+
+      flash[:jour] = jour
+      flash[:creneau_id] = creneau_id
+      flash[:aviron_id] = reservation_params[:aviron_id]
+
       if creneau_id.include?("---") || creneau_id==""
         is_valid = false
         message = "Le créneau horaire que vous avez choisi est incorrect"
+      elsif jour.to_date < Date.today
+        is_valid = false
+        message = "Le jour de réservation doit être postérieure à aujourd'hui"
       else
-        creneau = Creneau.find(reservation_params[:creneau_id])
+        creneau = Creneau.find(creneau_id)
         aviron = Aviron.find(reservation_params[:aviron_id])
 
         delta = creneau.fin - creneau.debut

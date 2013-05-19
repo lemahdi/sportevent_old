@@ -24,11 +24,11 @@ module ReservationsHelper
 		"#{creneau.debut.strftime('%H:%M')}-#{creneau.fin.strftime('%H:%M')}"
 	end
 
-	def mem_jour(reservation)
-		if reservation.nil? || reservation.jour.nil?
+	def remember_jour(jour)
+		if jour.nil?
 			Date.today.strftime('%d-%m-%Y')
 		else
-			reservation.jour.strftime('%d-%m-%Y')
+			jour
 		end
 	end
 
