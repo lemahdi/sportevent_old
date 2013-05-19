@@ -17,7 +17,7 @@
       <div class="row reservations">
         <div class="span2 field">
           <%= f.label :jour %><br />
-          <%= f.text_field :jour, class: "input-append date datepicker", value: flash[:jour].nil? ? Date.today.strftime('%d-%m-%Y') : flash[:jour] %>
+          <%= f.text_field :jour, class: "input-append date datepicker", value: flash[:jour].present? && flash[:jour].to_date>Date.today ? flash[:jour] : Date.today.strftime('%d-%m-%Y') %>
           <!-- div class="input-append date datepicker">
             <input size="16" type="text" value= <%= "06-05-2013" %> >
             <span class="add-on"><i class="icon-th"></i></span>
