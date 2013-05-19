@@ -93,12 +93,12 @@ class ReservationsController < ApplicationController
       flash[:creneau_id] = creneau_id
       flash[:aviron_id] = reservation_params[:aviron_id]
 
-      if creneau_id.include?("---") || creneau_id==""
+      if jour.to_date < Date.today
+        is_valid = false
+        message = "Le jour de réservation doit être postérieur à aujourd'hui"
+      elsif creneau_id.include?("---") || creneau_id==""
         is_valid = false
         message = "Le créneau horaire que vous avez choisi est incorrect"
-      elsif jour.to_date < Date.today
-        is_valid = false
-        message = "Le jour de réservation doit être postérieure à aujourd'hui"
       else
         creneau = Creneau.find(creneau_id)
         aviron = Aviron.find(reservation_params[:aviron_id])
