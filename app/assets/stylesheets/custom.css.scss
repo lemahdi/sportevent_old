@@ -75,14 +75,14 @@ p {
   padding-top: 9px;
   font-weight: bold;
   line-height: 1;
-  &:hover {
-    color: white;
+  /*&:hover {
+    color: green;
     text-decoration: none;
-  }
+  }*/
 }
 
 #logo:hover {
-  color: $blue;
+  color: $green;
   text-decoration: none;
 }
 

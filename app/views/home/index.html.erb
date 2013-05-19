@@ -2,26 +2,6 @@
 
 <div class="center hero-unit">
 <% if signed_in? %>
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th>Jour</th>
-				<th>Créneau</th>
-				<th>Rameurs</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			<% for option in ["success", "error", "warning", "info", "", ""] %>
-			<tr class=<%= option %> >
-				<td>2/5/13</td>
-				<td>11h-12h</td>
-				<td>Mahdi, Ghada, Tarik, Maha</td>
-				<td><button type="button" class="btn btn-small disabled">Participer</button></td>
-			</tr>
-			<% end %>
-		</tbody>
-	</table>
 <% else %>
 	<h1>La Yolette Parisenne</h1>
 
