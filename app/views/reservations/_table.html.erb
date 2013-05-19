@@ -1,6 +1,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th></th>
       <th>Jour</th>
       <th>Créneau</th>
       <th>Aviron</th>
@@ -11,6 +12,11 @@
   <tbody class="reservation">
     <% @reservations.each do |reservation| %>
       <tr class="<%= resa_class(reservation) %>" >
+        <td>
+        <% if subscribed?(reservation) %>
+          <i class="icon-thumbs-up"></i>
+        <% end %>
+        </td>
         <td><%= reservation.jour.strftime("%d/%m/%y") %></td>
         <td><%= display_creneau(reservation.creneau) %></td>
         <td><%= reservation.aviron.description %></td>
@@ -27,6 +33,7 @@
       </tr>
     <% end %>
     <tr>
+      <td></td>
       <td></td>
       <td></td>
       <td></td>
