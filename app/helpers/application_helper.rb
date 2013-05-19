@@ -9,4 +9,9 @@ module ApplicationHelper
 			"#{base_title} | #{page_title}"
 		end
 	end
+
+	# Overwrite will_paginate to specify previous and next labels in french
+	def will_paginate_fr(list)
+		will_paginate list, previous_label: "Précédent", next_label: "Suivant"
+	end
 end
