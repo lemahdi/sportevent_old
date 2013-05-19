@@ -4,14 +4,13 @@
       <% if @rameur.errors.any? %>
         <div id="error_explanation">
           <div class="alert alert-error">
-            <%= pluralize(@rameur.errors.count, "error") %> , informations incomplètes :
+            <strong><%= pluralize(@rameur.errors.count, "erreur") %> :</strong>
+            <ul>
+              <% @rameur.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
           </div>
-
-          <ul>
-          <% @rameur.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-          </ul>
         </div>
       <% end %>
 

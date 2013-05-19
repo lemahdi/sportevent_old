@@ -3,13 +3,14 @@
     <%= form_for(@reservation) do |f| %>
       <% if @reservation.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(@reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
-
-          <ul>
-          <% @reservation.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-          </ul>
+          <div class="alert alert-error">
+            <strong><%= pluralize(@reservation.errors.count, "erreur") %> :</strong>
+            <ul>
+              <% @reservation.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
         </div>
       <% end %>
 
