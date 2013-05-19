@@ -12,11 +12,11 @@ class ReservationsController < ApplicationController
     respond_to do |format|
       format.html { @reservations }
       format.json {
-        render :json => {
-          :current_page => @reservations.current_page,
-          :per_page => @reservations.per_page,
-          :total_entries => @reservations.total_entries,
-          :entries => @reservations
+        render json: {
+          current_page:  @reservations.current_page,
+          per_page:      @reservations.per_page,
+          total_entries: @reservations.total_entries,
+          entries:       @reservations
         }
       }
     end

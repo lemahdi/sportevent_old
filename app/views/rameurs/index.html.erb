@@ -2,7 +2,15 @@
 
 <h1>Tous les rameurs</h1>
 
-<p id="notice"><%= notice %></p>
+<% if notice %>
+<div class="row">
+  <div class="span8">
+    <div id="notice">
+      <p class="alert alert-success"><%= notice %></p>
+    </div>
+  </div>
+</div>
+<% end %>
 
 <%= will_paginate_fr @rameurs %>
 
@@ -33,4 +41,4 @@
 
 <br />
 
-<%= will_paginate %>
+<%= will_paginate_fr @rameurs %>

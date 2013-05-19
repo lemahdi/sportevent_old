@@ -13,11 +13,11 @@ class RameursController < ApplicationController
     respond_to do |format|
       format.html { @rameurs }
       format.json {
-        render :json => {
-          :current_page => @rameurs.current_page,
-          :per_page => @rameurs.per_page,
-          :total_entries => @rameurs.total_entries,
-          :entries => @rameurs
+        render json: {
+          current_page:  @rameurs.current_page,
+          per_page:      @rameurs.per_page,
+          total_entries: @rameurs.total_entries,
+          entries:       @rameurs
         }
       }
     end
@@ -73,7 +73,9 @@ class RameursController < ApplicationController
   # DELETE /rameurs/1
   # DELETE /rameurs/1.json
   def destroy
-    Rameur.find(params[:id]).destroy
+    rameur = Rameur.find(params[:id])
+    rameur.reservations.each { |resa| resa.destroy } if rameur.reservations.count == 1
+    rameur.destroy
     respond_to do |format|
       format.html { redirect_to rameurs_url, notice: "Rameur supprimé" }
       format.json { head :no_content, status: :success }
