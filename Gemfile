@@ -10,6 +10,7 @@ gem 'protected_attributes'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'bootstrap-datepicker-rails'
+gem 'rails-i18n'
 
 gem 'pg'
 
