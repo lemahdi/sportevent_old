@@ -24,14 +24,6 @@ module ReservationsHelper
 		"#{creneau.debut.strftime('%H:%M')}-#{creneau.fin.strftime('%H:%M')}"
 	end
 
-	def remember_jour(jour)
-		if jour.nil?
-			Date.today.strftime('%d-%m-%Y')
-		else
-			jour
-		end
-	end
-
 	def changed_reservation?(reservation)
 		reservation.id == flash[:changed_reservation]
 	end
