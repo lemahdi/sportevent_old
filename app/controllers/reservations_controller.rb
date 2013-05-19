@@ -1,7 +1,8 @@
 class ReservationsController < ApplicationController
-  before_action :set_reservation, only: [:show, :edit, :update, :destroy]
+  before_action :set_reservation,      only: [:show, :edit, :update, :destroy]
   
-  before_filter :signed_in_rameur, only: [:index, :new, :create, :update, :destroy]
+  before_filter :signed_in_rameur,     only: [:index, :new, :create, :update, :destroy]
+  before_filter :check_creneau_aviron, only: :create
 
   # GET /reservations
   # GET /reservations.json
@@ -81,5 +82,23 @@ class ReservationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def reservation_params
       params.require(:reservation).permit(:jour, :creneau_id, :aviron_id)
+    end
+
+    # Check the conformity of the crenau with the aviron type
+    def check_creneau_aviron
+      creneau = Creneau.find(reservation_params[:creneau_id])
+      aviron = Aviron.find(reservation_params[:aviron_id])
+
+      delta = creneau.fin - creneau.debut
+      is_valid = delta==45.minutes && (aviron.description=="simple" || aviron.description=="double")
+      is_valid ||= delta==1.hour && aviron.description=="yolette"
+
+      unless is_valid
+        msg = "Le créneau horaire que vous avez choisi ne correspond pas au type d'aviron"
+        respond_to do |format|
+          format.html { redirect_to new_reservation_path, notice: msg }
+          format.json { render 'new', status: :unauthorized }
+        end
+      end
     end
 end
