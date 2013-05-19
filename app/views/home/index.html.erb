@@ -1,8 +1,6 @@
 <% provide(:title, 'Accueil') %>
 
 <div class="center hero-unit">
-<% if signed_in? %>
-<% else %>
 	<h1>La Yolette Parisenne</h1>
 
 	<h2>
@@ -10,6 +8,8 @@
 		Réservez, constituez votre équipage et partagez vos expériences.
 	</h2>
 
+<% unless signed_in? %>
 	<%= link_to "Devenir membre" , signup_path, class: "btn btn-large btn-primary" %>
 <% end %>
+
 </div>
