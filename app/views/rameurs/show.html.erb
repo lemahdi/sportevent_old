@@ -1,6 +1,14 @@
 <% provide(:title, "#{@rameur.nom} #{@rameur.prenom}") %>
 
-<p id="notice"><%= notice %></p>
+<% if notice %>
+<div class="row">
+	<div class="span8">
+		<div id="notice">
+			<p class="alert alert-success"><%= notice %></p>
+		</div>
+	</div>
+</div>
+<% end %>
 
 <div class="row">
   <aside class="span4">
