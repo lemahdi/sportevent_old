@@ -3,7 +3,13 @@
 <h1>Réserver</h1>
 
 <% if alert %>
-	<p id="error_explanation" class="span4 alert alert-error"><%= alert %></p>
+<div class="row">
+	<div class="span8">
+		<div id="error_explanation">
+			<p class="alert alert-error"><%= alert %></p>
+		</div>
+	</div>
+</div>
 <% end %>
 
 <%= render 'form' %>
