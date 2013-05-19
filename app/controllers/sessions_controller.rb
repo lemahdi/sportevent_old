@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
     flash.now[:error] = 'Vous avez été déconnecté avec succès'
     respond_to do |format|
       format.html { redirect_to root_url }
-      format.json { head :no_content }
+      format.json { head :no_content, status: :success }
     end
 	end
 end
