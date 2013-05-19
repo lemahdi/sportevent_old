@@ -32,8 +32,8 @@ module ReservationsHelper
 		end
 	end
 
-	def new_reservation?(reservation)
-		reservation.id == flash[:new_reservation]
+	def changed_reservation?(reservation)
+		reservation.id == flash[:changed_reservation]
 	end
 
 	def equipage(reservation)
@@ -54,12 +54,11 @@ module ReservationsHelper
 	end
 
 	def resa_class(reservation)
-		is_new_resa = new_reservation?(reservation)
 		is_empty_place = empty_place?(reservation)
 		days_left = (reservation.jour - Date.today).days
 
 		resa_class = []
-		resa_class << "new_resa" if is_new_resa
+		resa_class << "new_resa" if changed_reservation?(reservation)
 		if is_empty_place && days_left<=1.day
 			resa_class << "error"
 		elsif is_empty_place && days_left<=1.week

@@ -32,7 +32,7 @@ class ReservationsController < ApplicationController
     respond_to do |format|
       if @reservation.save
         @reservation.rameurs << current_rameur
-        flash[:new_reservation] = @reservation.id
+        flash[:changed_reservation] = @reservation.id
 
         format.html { redirect_to reservations_url, notice: 'Reservation enregistrée' }
         format.json { render action: 'index', status: :created, location: reservations_url }
@@ -47,14 +47,12 @@ class ReservationsController < ApplicationController
   # PATCH/PUT /reservations/1.json
   def update
     respond_to do |format|
+      flash[:changed_reservation] = @reservation.id
       if params[:participate] == "yes"
         @reservation.rameurs << current_rameur
-
-        flash[:new_reservation] = @reservation.id
-        message = "Félicitations, vous faites partie de l'équipage"
+        message = "Félicitations, vous avez rejoins l'équipage"
       else
         @reservation.rameurs.delete(current_rameur)
-
         message = "Vous avez quitté l'équipage"
       end
 
