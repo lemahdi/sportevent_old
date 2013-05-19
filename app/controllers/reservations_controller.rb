@@ -86,18 +86,25 @@ class ReservationsController < ApplicationController
 
     # Check the conformity of the crenau with the aviron type
     def check_creneau_aviron
-      creneau = Creneau.find(reservation_params[:creneau_id])
-      aviron = Aviron.find(reservation_params[:aviron_id])
+      is_valid = false
 
-      delta = creneau.fin - creneau.debut
-      is_valid = delta==45.minutes && (aviron.description=="simple" || aviron.description=="double")
-      is_valid ||= delta==1.hour && aviron.description=="yolette"
+      if reservation_params[:creneau_id].include?("---")
+        creneau = Creneau.find(reservation_params[:creneau_id])
+        aviron = Aviron.find(reservation_params[:aviron_id])
+
+        delta = creneau.fin - creneau.debut
+        is_valid = delta==45.minutes && (aviron.description=="simple" || aviron.description=="double")
+        is_valid ||= delta==1.hour && aviron.description=="yolette"
+
+        message = "Le créneau horaire que vous avez choisi ne correspond pas au type d'aviron"
+      else
+        message = "Le créneau horaire que vous avez choisi est incorrect"
+      end
 
       unless is_valid
-        msg = "Le créneau horaire que vous avez choisi ne correspond pas au type d'aviron"
         respond_to do |format|
-          format.html { redirect_to new_reservation_path, notice: msg }
-          format.json { render 'new', status: :unauthorized }
+          format.html { redirect_to new_reservation_path, alert: message }
+          format.json { render 'new', status: :unauthorized, alert: message }
         end
       end
     end

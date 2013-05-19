@@ -2,7 +2,9 @@
 
 <h1>Réserver</h1>
 
-<p id="notice"><%= notice %></p>
+<% if alert %>
+	<p id="error_explanation" class="span4 alert alert-error"><%= alert %></p>
+<% end %>
 
 <%= render 'form' %>
 
