@@ -3,6 +3,6 @@
   Votre login est : <%= @user.email %>.<br/>
 </p>
 <p>
-  Pour vous connecter au site, suivez ce lien: <%= @url %>.
+  Pour vous connecter au site, suivez ce <%= link_to "lien", signin_url %>.
 </p>
 <p>Merci d'avoir rejoins l'équipage, et bonne course!</p>

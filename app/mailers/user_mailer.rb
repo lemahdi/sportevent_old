@@ -1,9 +1,10 @@
 class UserMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "mahdi00@gmail.com"
 
   def welcome_email(rameur)
   	@user = rameur
-  	@url = "localhost:3000/signin"
-  	mail(to: rameur.email, subject: "Bienvenue à la Yolette Parisienne")
+  	# attachements["file_name"] = File.read("file_path")
+  	mail(to:      rameur.email,
+  			 subject: "Bienvenue à la Yolette Parisienne")
   end
 end
