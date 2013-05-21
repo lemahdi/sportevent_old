@@ -18,6 +18,6 @@ ActionMailer::Base.smtp_settings = {
   enable_starttls_auto: true
 }
 
-ActionMailer::Base.default_url_options[:host] = Rails.env.production? ? layoletteparisienne.herokuapp.com : "localhost:3000"
+ActionMailer::Base.default_url_options[:host] = Rails.env.production? ? "layoletteparisienne.herokuapp.com" : "localhost:3000"
 
 Mail.register_interceptor(DevelopmentMailInterceptor) if Rails.env.development?
