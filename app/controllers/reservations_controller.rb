@@ -46,7 +46,7 @@ class ReservationsController < ApplicationController
         @reservation.rameurs << current_rameur
         flash[:changed_reservation] = @reservation.id
 
-        format.html { redirect_to reservations_url, notice: 'Reservation enregistrée' }
+        format.html { redirect_to reservations_url, notice: 'Réservation enregistrée' }
         format.json { render action: 'index', status: :created, location: reservations_url }
       else
         format.html { render action: 'new' }
