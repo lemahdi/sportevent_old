@@ -12,9 +12,9 @@ Rameur.create(nom: "Akkouh", prenom: "Mahdi", email: "akkouh.mahdi@gmail.com",
 Rameur.first.update(password: "foobar", password_confirmation: "foobar", admin: true)
 
 # Aviron model
-Aviron.create(description: "simple", nbplces: 1)
-Aviron.create(description: "double", nbplces: 2)
-Aviron.create(description: "yolette", nbplces: 4)
+Aviron.create(description: "simple", nbplaces: 1)
+Aviron.create(description: "double", nbplaces: 2)
+Aviron.create(description: "yolette", nbplaces: 4)
 
 # Creneau model
 ## 45 minutes
