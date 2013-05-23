@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "mahdi00@gmail.com"
+  default from: Rails.env.production? ? ENV['SENDGRID_USERNAME'] : "mahdi00@gmail.com"
 
   def welcome_email(rameur)
   	@user = rameur
