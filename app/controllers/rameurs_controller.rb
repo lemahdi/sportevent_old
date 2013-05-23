@@ -77,7 +77,7 @@ class RameursController < ApplicationController
   # DELETE /rameurs/1.json
   def destroy
     rameur = Rameur.find(params[:id])
-    rameur.reservations.each { |resa| resa.destroy } if rameur.reservations.count == 1
+    rameur.reservations.each { |resa| resa.destroy if resa.rameurs.size == 1 }
     rameur.destroy
     respond_to do |format|
       format.html { redirect_to rameurs_url, notice: "Rameur supprimé" }
