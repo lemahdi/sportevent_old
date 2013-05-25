@@ -11,6 +11,7 @@ gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'bootstrap-datepicker-rails'
 gem 'rails-i18n'
+gem 'active_attr'
 
 gem 'pg'
 

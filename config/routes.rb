@@ -1,4 +1,6 @@
 Layolette::Application.routes.draw do
+  get "contact/new"
+  get "contact/create"
   get "home/index"
   resources :rameurs
   resources :sessions, only: [:new, :create, :destroy]
