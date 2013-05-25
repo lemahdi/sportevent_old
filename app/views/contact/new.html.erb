@@ -1,2 +1,46 @@
-<h1>Contact#new</h1>
-<p>Find me in app/views/contact/new.html.erb</p>
+<% provide(:title, 'Contact') %>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for @contact, url: contact_path do |f| %>
+      <% if @contact.errors.any? %>
+        <div id="error_explanation">
+          <div class="alert alert-error">
+            <strong><%= pluralize(@contact.errors.count, "erreur") %> :</strong>
+            <ul>
+              <% @contact.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+
+		  <fieldset class="fields">
+		    <div class="field">
+		      <%= f.label :nom %><br />
+		      <%= f.text_field :nom %>
+		    </div>
+		    
+		    <div class="field">
+		      <%= f.label :email %><br />
+		      <%= f.text_field :email %>
+		    </div>
+		    <div class="field">
+		      <%= f.label :sujet %><br />
+		      <%= f.text_field :subject %>
+		    </div>
+		    
+		    <div class="field">
+		      <%= f.label :Message %><br />
+		      <%= f.text_area :content %>
+		    </div>
+		  </fieldset>
+		  
+      <div class="actions">
+      	<br />
+        <%= f.submit "Envoyer", class: "btn btn-large btn-primary" %>
+      </div>
+		<% end %>
+  </div>
+</div>

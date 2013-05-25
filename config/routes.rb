@@ -1,6 +1,4 @@
 Layolette::Application.routes.draw do
-  get "contact/new"
-  get "contact/create"
   get "home/index"
   resources :rameurs
   resources :sessions, only: [:new, :create, :destroy]
@@ -18,6 +16,8 @@ Layolette::Application.routes.draw do
   get '/signup'    => 'rameurs#new'
   get '/signin'    => 'sessions#new'
   match '/signout' => 'sessions#destroy', via: :delete
+  match '/contact' => 'contact#new', :as => 'contact', :via => :get
+  match '/contact' => 'contact#create', :as => 'contact', :via => :post
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
