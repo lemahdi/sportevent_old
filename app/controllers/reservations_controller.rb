@@ -9,6 +9,7 @@ class ReservationsController < ApplicationController
   # GET /reservations.json
   def index
     @reservations = Reservation.recent.asc("jour").paginate(page: params[:page], per_page: 30)
+    @rameur = Rameur.find(params[:rameur_id]) if params[:rameur_id].present?
 
     respond_to do |format|
       format.html { @reservations }

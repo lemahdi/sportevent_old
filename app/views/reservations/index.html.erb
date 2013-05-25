@@ -1,6 +1,10 @@
 <% provide(:title, 'Réservations') %>
 
-<h1>Liste des réservations</h1>
+<% if @rameur %>
+	<h1>Mes réservations</h1>
+<% else %>
+	<h1>Liste des réservations</h1>
+<% end %>
 
 <% if notice %>
 	<div class="row">

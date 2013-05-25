@@ -1,6 +1,8 @@
 Layolette::Application.routes.draw do
   get "home/index"
-  resources :rameurs
+  resources :rameurs do
+    resources :reservations, only: [:index]
+  end
   resources :sessions, only: [:new, :create, :destroy]
   resources :reservations, only: [:index, :show, :new, :create, :update, :destroy]
 

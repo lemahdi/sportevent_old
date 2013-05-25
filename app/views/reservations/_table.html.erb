@@ -9,28 +9,31 @@
       <th></th>
     </tr>
   </thead>
-  <tbody class="reservation">
+  <tbody class="reservation"><p>
     <% @reservations.each do |reservation| %>
-      <tr class="<%= resa_class(reservation) %>" >
-        <td>
-        <% if subscribed?(reservation) %>
-          <a href=<%= reservation_path(reservation) %> ><i class="icon-user"></i></a>
-        <% end %>
-        </td>
-        <td><%= reservation.jour.strftime("%d/%m/%y") %></td>
-        <td><%= display_creneau(reservation.creneau) %></td>
-        <td><%= reservation.aviron.description %></td>
-        <td><%= equipage(reservation) %></td>
-
-        <% button_params = build_button(reservation) %>
-        <%= form_tag reservation_path(reservation), method: button_params[:action] do %>
-          <%= hidden_field_tag :participate, button_params[:participate] %>
+      <% subscribed = subscribed?(reservation) %>
+      <% if @rameur && subscribed || !@rameur %>
+        <tr class="<%= resa_class(reservation) %>" >
           <td>
-            <%= submit_tag button_params[:text], disabled: button_params[:disabled], class: "btn btn-small" %>
+          <% if subscribed %>
+            <a href=<%= reservation_path(reservation) %> ><i class="icon-user"></i></a>
+          <% end %>
           </td>
-        <% end %>
+          <td><%= reservation.jour.strftime("%d/%m/%y") %></td>
+          <td><%= display_creneau(reservation.creneau) %></td>
+          <td><%= reservation.aviron.description %></td>
+          <td><%= equipage(reservation) %></td>
 
-      </tr>
+          <% button_params = build_button(reservation) %>
+          <%= form_tag reservation_path(reservation), method: button_params[:action] do %>
+            <%= hidden_field_tag :participate, button_params[:participate] %>
+            <td>
+              <%= submit_tag button_params[:text], disabled: button_params[:disabled], class: "btn btn-small" %>
+            </td>
+          <% end %>
+
+        </tr>
+      <% end %>
     <% end %>
     <tr>
       <td></td>
