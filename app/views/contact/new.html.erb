@@ -16,31 +16,54 @@
         </div>
       <% end %>
 
-		  <fieldset class="fields">
-		    <div class="field">
-		      <%= f.label :nom %><br />
-		      <%= f.text_field :nom %>
-		    </div>
-		    
-		    <div class="field">
-		      <%= f.label :email %><br />
-		      <%= f.text_field :email %>
-		    </div>
-		    <div class="field">
+		  <% if signed_in? %>
+      	<div class="row">
+       		<div class="span6 field">
+          	<%= f.hidden_field :nom, value: "#{current_rameur.nom} #{current_rameur.prenom}" %>
+			    </div>
+			  </div>
+			    
+      	<div class="row">
+			    <div class="span6 field">
+	        	<%= f.hidden_field :email, value: current_rameur.email %>
+			    </div>
+			  </div>
+		  <% else %>
+		  	<div class="row">
+			    <div class="span6 field">
+			      <%= f.label :nom %><br />
+			      <%= f.text_field :nom %>
+			    </div>
+			  </div>
+			    
+		  	<div class="row">
+			    <div class="span6 field">
+			      <%= f.label :email %><br />
+			      <%= f.text_field :email %>
+			    </div>
+			  </div>
+		  <% end %>
+
+		  <div class="row">
+		    <div class="span6 field">
 		      <%= f.label :sujet %><br />
 		      <%= f.text_field :subject %>
 		    </div>
+		  </div>
 		    
-		    <div class="field">
-		      <%= f.label :Message %><br />
+		  <div class="row">
+		    <div class="span6 field">
+		      <%= f.label :message %><br />
 		      <%= f.text_area :content %>
 		    </div>
-		  </fieldset>
+		  </div>
 		  
-      <div class="actions">
-      	<br />
-        <%= f.submit "Envoyer", class: "btn btn-large btn-primary" %>
-      </div>
+		  <div class="row">
+	      <div class="actions">
+	      	<br />
+	        <%= f.submit "Envoyer", class: "btn btn-large btn-primary" %>
+	      </div>
+	    </div>
 		<% end %>
   </div>
 </div>

@@ -1,5 +1,15 @@
 <% provide(:title, 'Accueil') %>
 
+<% if notice %>
+	<div class="row">
+		<div class="span8">
+			<div id="notice">
+				<p class="alert alert-success"><%= notice %></p>
+			</div>
+		</div>
+	</div>
+<% end %>
+
 <div class="center hero-unit">
 	<h1>La Yolette Parisenne</h1>
 
