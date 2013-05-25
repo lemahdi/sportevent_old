@@ -1,8 +1,9 @@
 class ReservationsController < ApplicationController
-  before_action :set_reservation,  only: [:show, :edit, :update, :destroy]
+  before_action :set_reservation,           only: [:show, :edit, :update, :destroy]
   
-  before_filter :signed_in_rameur, only: [:index, :new, :create, :update, :destroy]
-  before_filter :check_params,     only: :create
+  before_filter :signed_in_rameur,          only: [:index, :show, :new, :create, :update, :destroy]
+  before_filter :check_params,              only: :create
+  before_filter :subscribed_to_reservation, only: :show
 
   # GET /reservations
   # GET /reservations.json
@@ -124,6 +125,17 @@ class ReservationsController < ApplicationController
         respond_to do |format|
           format.html { redirect_to new_reservation_path, alert: message }
           format.json { render 'new', status: :unauthorized, alert: message }
+        end
+      end
+    end
+
+    # Verify that the current user is subscribed to the reservation he tries to show
+    def subscribed_to_reservation
+      unless subscribed?(@reservation)
+        message = "Vous n'êtes pas inscrit(e) à cette réservation"
+        respond_to do |format|
+          format.html { redirect_to reservations_url, alert: message }
+          format.json { render 'show', status: :unauthorized, alert: message }
         end
       end
     end

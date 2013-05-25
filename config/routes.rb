@@ -2,7 +2,7 @@ Layolette::Application.routes.draw do
   get "home/index"
   resources :rameurs
   resources :sessions, only: [:new, :create, :destroy]
-  resources :reservations, only: [:index, :new, :create, :update, :destroy]
+  resources :reservations, only: [:index, :show, :new, :create, :update, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

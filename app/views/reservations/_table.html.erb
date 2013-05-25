@@ -14,7 +14,7 @@
       <tr class="<%= resa_class(reservation) %>" >
         <td>
         <% if subscribed?(reservation) %>
-          <i class="icon-user"></i>
+          <a href=<%= reservation_path(reservation) %> ><i class="icon-user"></i></a>
         <% end %>
         </td>
         <td><%= reservation.jour.strftime("%d/%m/%y") %></td>

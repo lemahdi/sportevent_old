@@ -1,25 +1,76 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, "Réservation") %>
 
-<p>
-  <strong>Jour:</strong>
-  <%= @reservation.jour %>
-</p>
+<% if notice %>
+<div class="row">
+	<div class="span8">
+		<div id="notice">
+			<p class="alert alert-success"><%= notice %></p>
+		</div>
+	</div>
+</div>
+<% end %>
 
-<p>
-  <strong>Creneau:</strong>
-  <%= @reservation.creneau %>
-</p>
+<div class="row">
+  <aside class="span4">
+    <section>
+			<h1>Réservation <%= @reservation.id %></h1>
+    </section>
+  </aside>
+</div>
 
-<p>
-  <strong>Aviron:</strong>
-  <%= @reservation.aviron %>
-</p>
+<div class="row">
+	<div class="span2">
+	  <strong>Jour:</strong>
+	</div>
+	<div class="span3">
+	  <%= @reservation.jour.strftime("%d/%m/%Y") %>
+	</div>
+</div>
 
-<p>
-  <strong>Confirmation:</strong>
-  <%= @reservation.confirmation %>
-</p>
+<div class="row">
+	<div class="span2">
+	  <strong>Créneau:</strong>
+	</div>
+	<div class="span3">
+	  de
+	  <%= @reservation.creneau.debut.strftime("%H:%M") %>
+	  à
+	  <%= @reservation.creneau.fin.strftime("%H:%M") %>
+	</div>
+</div>
 
+<div class="row">
+	<div class="span2">
+	  <strong>Aviron:</strong>
+	</div>
+	<div class="span3">
+	  <%= pluralize(@reservation.aviron.nbplaces, "place") %>
+	</div>
+</div>
 
-<%= link_to 'Edit', edit_reservation_path(@reservation) %> |
-<%= link_to 'Back', reservations_path %>
+<div class="row">
+	<div class="span2">
+	  <strong>Confirmation:</strong>
+	</div>
+	<div class="span3">
+	  <%= confirmation_message(@reservation) %>
+	</div>
+</div>
+</br>
+
+<div class="row">
+	<div class="span2">
+	  <strong>Rameurs:</strong>
+	</div>
+	<div class="span3">
+	  <% @reservation.rameurs.each do |rameur| %>
+			<div class="row">
+		  	<%= gravatar_for rameur %>
+			  <br><%= link_to "#{rameur.nom} #{rameur.prenom}", rameur_path(rameur) %>
+			</div>
+			</br>
+	  <% end %>
+	</div>
+</div>
+
+<!-- %= link_to 'Edit', edit_reservation_path(@reservation) %> | -->

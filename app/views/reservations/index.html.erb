@@ -12,6 +12,16 @@
 	</div>
 <% end %>
 
+<% if alert %>
+	<div class="row">
+		<div class="span8">
+			<div id="notice">
+				<p class="alert alert-block"><%= alert %></p>
+			</div>
+		</div>
+	</div>
+<% end %>
+
 <%= will_paginate_fr @reservations %>
 
 <div class="center hero-unit">
