@@ -3,6 +3,7 @@ class Contact
 
 	attribute :nom
 	attribute :email
+	attribute :subject
 	attribute :content
 
 	validates :nom   , presence: true, length: { maximum: 50 }
@@ -10,5 +11,6 @@ class Contact
 	validates :email , presence:   true,
 									 	 format:     { with: VALID_EMAIL_REGEXP },
 									 	 uniqueness: { case_sensitive: false }
+	validates_length_of :subject, maximum: 50
 	validates_length_of :content, maximum: 500
 end
