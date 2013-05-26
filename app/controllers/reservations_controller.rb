@@ -1,9 +1,9 @@
 class ReservationsController < ApplicationController
-  before_action :set_reservation,           only: [:show, :edit, :update, :destroy]
+  before_action :set_reservation,           only: [:edit, :update, :destroy]
   
-  before_filter :signed_in_rameur,          only: [:index, :show, :new, :create, :update, :destroy]
+  before_filter :signed_in_rameur,          only: [:index, :edit, :new, :create, :update, :destroy]
   before_filter :check_params,              only: :create
-  before_filter :subscribed_to_reservation, only: :show
+  before_filter :subscribed_to_reservation, only: [:edit, :destroy]
 
   # GET /reservations
   # GET /reservations.json
@@ -60,7 +60,7 @@ class ReservationsController < ApplicationController
   # PATCH/PUT /reservations/1
   # PATCH/PUT /reservations/1.json
   def update
-    respond_to do |format|
+    if params[:from_page] == "index"
       flash[:changed_reservation] = @reservation.id
       if params[:participate] == "yes"
         @reservation.rameurs << current_rameur
@@ -69,9 +69,30 @@ class ReservationsController < ApplicationController
         @reservation.rameurs.delete(current_rameur)
         message = "Vous avez quitté l'équipage"
       end
+      respond_to do |format|
+        format.html { redirect_to reservations_url, notice: message }
+        format.json { render action: 'index', status: :updated, location: reservations_url }
+      end
 
-      format.html { redirect_to reservations_url, notice: message }
-      format.json { render action: 'index', status: :updated, location: reservations_url }
+    elsif params[:reservation][:from_page] == "edit"
+      if reservation_confirmed?(@reservation)
+        message = 'Réservation déjà confirmée'
+        respond_to do |format|
+          format.html { redirect_to edit_reservation_url(@reservation), alert: message }
+          format.json { render action: 'edit', alert: message, location: edit_reservation_url(@reservation) }
+        end
+      else
+        @reservation.confirmation = true
+        respond_to do |format|
+          if @reservation.save
+            format.html { redirect_to edit_reservation_url(@reservation), notice: 'Réservation confirmée, tous les rameurs ont été notifiés par mail' }
+            format.json { render action: 'edit', status: :updated, location: edit_reservation_url(@reservation) }
+          else
+            format.html { render action: 'edit' }
+            format.json { render json: @reservation.errors, status: :unprocessable_entity }
+          end
+        end
+      end
     end
   end
 

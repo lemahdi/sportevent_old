@@ -16,7 +16,9 @@
         <tr class="<%= resa_class(reservation) %>" >
           <td>
             <% if subscribed %>
-              <a href=<%= reservation_path(reservation) %> ><i class="icon-user"></i></a>
+              <a href=<%= edit_reservation_path(reservation) %> >
+                <%= image_tag "glyphicons_003_user.png", alt: "rameur" %>
+              </a>
             <% end %>
             <% if reservation_confirmed?(reservation) %>
               <%= image_tag "glyphicons_163_iphone.png", alt: "phone" %>
@@ -29,6 +31,7 @@
 
           <% button_params = build_button(reservation) %>
           <%= form_tag reservation_path(reservation), method: button_params[:action] do %>
+            <%= hidden_field_tag :from_page, "index" %>
             <%= hidden_field_tag :participate, button_params[:participate] %>
             <td>
               <%= submit_tag button_params[:text], disabled: button_params[:disabled], class: "btn btn-small" %>
