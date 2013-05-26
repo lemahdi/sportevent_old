@@ -53,7 +53,7 @@
 	  <strong>Confirmation:</strong>
 	</div>
 	<div class="span3">
-	  <%= confirmation_message(@reservation) %>
+	  <%= reservation_confirmed?(@reservation) ? "oui, par téléphone" : "non" %>
 	</div>
 </div>
 </br>

@@ -15,9 +15,12 @@
       <% if @rameur && subscribed || !@rameur %>
         <tr class="<%= resa_class(reservation) %>" >
           <td>
-          <% if subscribed %>
-            <a href=<%= reservation_path(reservation) %> ><i class="icon-user"></i></a>
-          <% end %>
+            <% if subscribed %>
+              <a href=<%= reservation_path(reservation) %> ><i class="icon-user"></i></a>
+            <% end %>
+            <% if reservation_confirmed?(reservation) %>
+              <%= image_tag "glyphicons_163_iphone.png", alt: "phone" %>
+            <% end %>
           </td>
           <td><%= reservation.jour.strftime("%d/%m/%y") %></td>
           <td><%= display_creneau(reservation.creneau) %></td>

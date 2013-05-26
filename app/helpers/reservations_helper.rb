@@ -81,11 +81,7 @@ module ReservationsHelper
 		return button_params
 	end
 
-	def confirmation_message(reservation)
-		if reservation.nil? || !reservation.confirmation
-			"non"
-		else
-			"oui, par téléphone"
-		end
+	def reservation_confirmed?(reservation)
+		!reservation.nil? && reservation.confirmation
 	end
 end
