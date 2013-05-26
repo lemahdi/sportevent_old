@@ -11,56 +11,43 @@
 <% end %>
 
 <div class="row">
-  <aside class="span4">
-    <section>
-			<h1>Réservation <%= @reservation.id %></h1>
-    </section>
-  </aside>
-</div>
-
-<div class="row">
-	<div class="span2">
-	  <strong>Jour:</strong>
-	</div>
-	<div class="span3">
-	  <%= @reservation.jour.strftime("%d/%m/%Y") %>
+	<div class="span4">
+		<h1>Réservation <%= @reservation.id %></h1>
 	</div>
 </div>
 
 <div class="row">
-	<div class="span2">
-	  <strong>Créneau:</strong>
-	</div>
-	<div class="span3">
-	  de
-	  <%= @reservation.creneau.debut.strftime("%H:%M") %>
-	  à
-	  <%= @reservation.creneau.fin.strftime("%H:%M") %>
-	</div>
-</div>
+	<div class="span5">
+		<div class="span2">
+		  <strong>Jour:</strong>
+		</div>
+		<div class="span2">
+		  <%= @reservation.jour.strftime("%d/%m/%Y") %>
+		</div>
 
-<div class="row">
-	<div class="span2">
-	  <strong>Aviron:</strong>
-	</div>
-	<div class="span3">
-	  <%= pluralize(@reservation.aviron.nbplaces, "place") %>
-	</div>
-</div>
+		<div class="span2">
+		  <strong>Créneau:</strong>
+		</div>
+		<div class="span2">
+		  de
+		  <%= @reservation.creneau.debut.strftime("%H:%M") %>
+		  à
+		  <%= @reservation.creneau.fin.strftime("%H:%M") %>
+		</div>
 
-<div class="row">
-	<div class="span2">
-	  <strong>Confirmation:</strong>
-	</div>
-	<div class="span3">
-	  <%= reservation_confirmed?(@reservation) ? "oui, par téléphone" : "non" %>
-	</div>
-</div>
-</br>
+		<div class="span2">
+		  <strong>Aviron:</strong>
+		</div>
+		<div class="span2">
+		  <%= pluralize(@reservation.aviron.nbplaces, "place") %>
+		</div>
 
-<div class="row">
-	<div class="span2">
-	  <strong>Rameurs:</strong>
+		<div class="span2">
+		  <strong>Confirmation:</strong>
+		</div>
+		<div class="span2">
+		  <%= reservation_confirmed?(@reservation) ? "oui, par téléphone" : "non" %>
+		</div>
 	</div>
 	<div class="span3">
 	  <% @reservation.rameurs.each do |rameur| %>
