@@ -86,6 +86,11 @@ class ReservationsController < ApplicationController
         @reservation.responsable_id = current_rameur.id
         respond_to do |format|
           if @reservation.save
+            # Notify the rameurs
+            @reservation.rameurs.each do |rameur|
+              UserMailer.notify_reservation_email(rameur, current_rameur, @reservation).deliver
+            end
+
             message = "Réservation confirmée"
             if @reservation.rameurs.size > 1
               message += ", tous les rameurs ont été notifiés par mail"

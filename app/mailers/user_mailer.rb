@@ -14,4 +14,12 @@ class UserMailer < ActionMailer::Base
   	mail(to:      contact.email,
   			 subject: "[LYP-Contact] #{contact.subject}")
   end
+
+  def notify_reservation_email(rameur, responsable, reservation)
+    @nom = "#{responsable.nom} #{responsable.prenom}"
+    @responsable = responsable
+    @reservation = reservation
+    mail(to:      rameur.email,
+         subject: "[LYP-Réservation] confirmation")
+  end
 end
