@@ -78,14 +78,16 @@
 				</div>
 			</div>
 
-			<div class="row">
-				<div class="span1 center">
-					<%= image_tag "glyphicons_043_group.png", alt: "groupe" %>
+			<% if @reservation.rameurs.size > 1 %>
+				<div class="row">
+					<div class="span1 center">
+						<%= image_tag "glyphicons_043_group.png", alt: "groupe" %>
+					</div>
+					<div class="span4">
+						<p>contacter le groupe</p>
+					</div>
 				</div>
-				<div class="span4">
-					<p>contacter le groupe</p>
-				</div>
-			</div>
+			<% end %>
 
 			<div class="row">
 				<div class="span1 center">
