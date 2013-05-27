@@ -1,8 +1,9 @@
 class Reservation < ActiveRecord::Base
-  attr_accessible :jour, :creneau_id, :aviron_id, :confirmation
+  attr_accessible :jour, :creneau_id, :aviron_id, :confirmation, :responsable_id
 
   belongs_to :creneau
   belongs_to :aviron
+  belongs_to :rameur, class_name: "Rameur", foreign_key: "responsable_id"
   has_many :registres, dependent: :destroy
   has_many :rameurs, through: :registres
 
@@ -16,6 +17,6 @@ class Reservation < ActiveRecord::Base
 
   private
     def empty_place
-      errors.add(:aviron, "Aviron #{aviron.id} is full") if self.rameurs.size > self.aviron.nbplaces
+      errors.add(:aviron, "Aviron #{aviron.id} est rempli") if self.rameurs.size > self.aviron.nbplaces
     end
 end

@@ -83,6 +83,7 @@ class ReservationsController < ApplicationController
         end
       else
         @reservation.confirmation = true
+        @reservation.responsable_id = current_rameur.id
         respond_to do |format|
           if @reservation.save
             message = "Réservation confirmée"

@@ -81,6 +81,20 @@ module ReservationsHelper
 		return button_params
 	end
 
+	def responsable_confirmation(reservation)
+		message = "confirmée au téléphone"
+		responsable = Rameur.find(reservation.responsable_id)
+		if responsable && reservation.rameurs.size > 1
+			message += " par"
+			if responsable == current_rameur
+				message += " moi"
+			else
+				message += " #{responsable.nom} #{responsable.prenom}"
+			end
+		end
+		message
+	end
+
 	def confirmation_message(reservation)
 		message = "Cette action est irreversible."
 		if reservation.rameurs.size > 1
