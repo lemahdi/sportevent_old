@@ -81,7 +81,11 @@ module ReservationsHelper
 		return button_params
 	end
 
-	def reservation_confirmed?(reservation)
-		!reservation.nil? && reservation.confirmation
+	def confirmation_message(reservation)
+		message = "Cette action est irreversible."
+		if reservation.rameurs.size > 1
+			message += " Si vous la validez, les rameurs inscrits seront notifiés par mail."
+		end
+		message += " Etes-vous sûrs de vouloir continuer ?"
 	end
 end

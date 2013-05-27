@@ -46,7 +46,7 @@
 		  <strong>Confirmation:</strong>
 		</div>
 		<div class="span2">
-		  <%= reservation_confirmed?(@reservation) ? "oui, par téléphone" : "non" %>
+		  <%= @reservation.confirmation ? "oui, par téléphone" : "non" %>
 		</div>
 	</div>
 	<div class="span3">

@@ -75,8 +75,8 @@ class ReservationsController < ApplicationController
       end
 
     elsif params[:reservation][:from_page] == "edit"
-      if reservation_confirmed?(@reservation)
-        message = 'Réservation déjà confirmée'
+      if @reservation.confirmation
+        message = "Réservation déjà confirmée"
         respond_to do |format|
           format.html { redirect_to edit_reservation_url(@reservation), alert: message }
           format.json { render action: 'edit', alert: message, location: edit_reservation_url(@reservation) }
@@ -85,7 +85,11 @@ class ReservationsController < ApplicationController
         @reservation.confirmation = true
         respond_to do |format|
           if @reservation.save
-            format.html { redirect_to edit_reservation_url(@reservation), notice: 'Réservation confirmée, tous les rameurs ont été notifiés par mail' }
+            message = "Réservation confirmée"
+            if @reservation.rameurs.size > 1
+              message += ", tous les rameurs ont été notifiés par mail"
+            end
+            format.html { redirect_to edit_reservation_url(@reservation), notice: message }
             format.json { render action: 'edit', status: :updated, location: edit_reservation_url(@reservation) }
           else
             format.html { render action: 'edit' }

@@ -20,7 +20,7 @@
                 <%= image_tag "glyphicons_003_user.png", alt: "rameur" %>
               </a>
             <% end %>
-            <% if reservation_confirmed?(reservation) %>
+            <% if reservation.confirmation %>
               <%= image_tag "glyphicons_163_iphone.png", alt: "phone" %>
             <% end %>
           </td>
