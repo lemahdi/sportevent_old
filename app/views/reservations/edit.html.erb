@@ -42,7 +42,7 @@
 				  <strong>Créneau:</strong>
 				</div>
 				<div class="span2">
-				  de
+				  De
 				  <%= @reservation.creneau.debut.strftime("%H:%M") %>
 				  à
 				  <%= @reservation.creneau.fin.strftime("%H:%M") %>
@@ -57,7 +57,7 @@
 				  <strong>Confirmation:</strong>
 				</div>
 				<div class="span2">
-				  <%= @reservation.confirmation ? "oui" : "non" %>
+				  <%= @reservation.confirmation ? "Oui" : "Non" %>
 				</div>
 			</div>
 			<br /><br />
@@ -72,11 +72,12 @@
 					<% else %>
 						<%= form_for(@reservation) do |f| %>
 	            <%= f.hidden_field :from_page, value: "edit" %>
-							<%= f.submit "J'ai réservé par téléphone", class: "btn btn-small btn-info", data: { confirm: confirmation_message(@reservation) } %>
+							<%= f.submit "J'ai réservé par téléphone", class: "btn btn-small btn-info", data: { confirm: confirmation_message_group(@reservation) } %>
 						<% end %>
 					<% end %>
 				</div>
 			</div>
+			<br/>
 
 			<% if @reservation.rameurs.size > 1 %>
 				<div class="row">
@@ -87,18 +88,26 @@
 	          <%= form_tag contact_path, method: :put do %>
 	            <%= label_tag "Contacter le groupe" %>
 	            <%= hidden_field_tag :reservation_id, @reservation.id %>
+	            <%= hidden_field_tag :destination, "group" %>
 	            <%= text_area_tag :content %>
 	            <%= submit_tag "Envoyer", class: "btn btn-small btn-info" %>
 	          <% end %>
 					</div>
 				</div>
+				<br/>
 
 				<div class="row">
 					<div class="span1 center">
 						<%= image_tag "glyphicons_135_inbox_out.png", alt: "mail rameurs" %>
 					</div>
-					<div class="span4">
-						<p>Contacter tous les rameurs</p>
+					<div class="span3">
+	          <%= form_tag contact_path, method: :put do %>
+	            <%= label_tag "Chercher un rameur" %>
+	            <%= hidden_field_tag :reservation_id, @reservation.id %>
+	            <%= hidden_field_tag :destination, "all" %>
+	            <%= text_area_tag :content %>
+	            <%= submit_tag "Envoyer", class: "btn btn-small btn-info", data: { confirm: "Cette action est irreversible. Si vous la validez, tous les rameurs du site seront notifiés par mail. Etes-vous sûrs de vouloir continuer ?" } %>
+	          <% end %>
 					</div>
 				</div>
 			<% end %>

@@ -95,7 +95,7 @@ module ReservationsHelper
 		message
 	end
 
-	def confirmation_message(reservation)
+	def confirmation_message_group(reservation)
 		message = "Cette action est irreversible."
 		if reservation.rameurs.size > 1
 			message += " Si vous la validez, les rameurs inscrits seront notifiés par mail."
