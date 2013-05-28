@@ -86,27 +86,27 @@
 					</div>
 					<div class="span3">
 	          <%= form_tag contact_path, method: :put do %>
-	            <%= label_tag "Contacter le groupe" %>
 	            <%= hidden_field_tag :reservation_id, @reservation.id %>
 	            <%= hidden_field_tag :destination, "group" %>
 	            <%= text_area_tag :content %>
-	            <%= submit_tag "Envoyer", class: "btn btn-small btn-info" %>
+	            <%= submit_tag "Je contacte le groupe", class: "btn btn-small btn-info" %>
 	          <% end %>
 					</div>
 				</div>
 				<br/>
+			<% end %>
 
+			<% if @reservation.aviron.nbplaces > 1 %>
 				<div class="row">
 					<div class="span1 center">
 						<%= image_tag "glyphicons_135_inbox_out.png", alt: "mail rameurs" %>
 					</div>
 					<div class="span3">
 	          <%= form_tag contact_path, method: :put do %>
-	            <%= label_tag "Chercher un rameur" %>
 	            <%= hidden_field_tag :reservation_id, @reservation.id %>
 	            <%= hidden_field_tag :destination, "all" %>
 	            <%= text_area_tag :content %>
-	            <%= submit_tag "Envoyer", class: "btn btn-small btn-info", data: { confirm: "Cette action est irreversible. Si vous la validez, tous les rameurs du site seront notifiés par mail. Etes-vous sûrs de vouloir continuer ?" } %>
+	            <%= submit_tag "Je cherche un rameur", class: "btn btn-small btn-info", data: { confirm: "Cette action est irreversible. Si vous la validez, tous les rameurs du site seront notifiés par mail. Etes-vous sûrs de vouloir continuer ?" } %>
 	          <% end %>
 					</div>
 				</div>
