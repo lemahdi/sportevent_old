@@ -1,7 +1,9 @@
 <h1>Confirmation de la réservation <%= @reservation.id %></h1>
 <p>
-  Bonjour,<br>
-  Le réservation a été confirmée au téléphone par <%= link_to @nom, rameur_url(@responsable) %>.<br>
+  Bonjour <%= @prenom %>,<br>
+  La réservation a été confirmée au téléphone par <%= link_to @contact.nom, rameur_url(@contact.rameur) %>.
+  <br><br>
+  
   Voici les détails :<br>
   <strong>Jour:</strong> <%= @reservation.jour.strftime("%d/%m/%Y") %><br>
   <strong>Créneau:</strong> de <%= @reservation.creneau.debut.strftime("%H:%M") %>
@@ -9,5 +11,5 @@
   <strong>Aviron:</strong> <%= pluralize(@reservation.aviron.nbplaces, "place") %><br>
 </p>
 <p>
-  Pour vous connecter au site, suivez ce <%= link_to "lien", edit_reservation_url(@reservation) %>.
+  Pour visualiser la réservation, suivez ce <%= link_to "lien", edit_reservation_url(@reservation) %>. Merci,
 </p>

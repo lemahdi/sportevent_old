@@ -1,4 +1,6 @@
 class ContactController < ApplicationController
+  before_filter :signed_in_rameur, only: [:new, :create, :update]
+
   def new
   	@contact = Contact.new
   end
@@ -15,6 +17,19 @@ class ContactController < ApplicationController
         format.html { render action: 'new' }
         format.json { render json: @contact.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def update
+    @contact = Contact.new(current_rameur)
+    @contact.content = params[:content]
+    reservation = Reservation.find_by_id(params[:reservation_id])
+    reservation.rameurs.each do |rameur|
+      UserMailer.notify_group_email(@contact, rameur, reservation).deliver if rameur.id != current_rameur.id
+    end
+    respond_to do |format|
+      format.html { redirect_to edit_reservation_path(reservation), notice: "Message envoyé" }
+      format.json { render action: 'show', status: :updated, location: reservation }
     end
   end
 

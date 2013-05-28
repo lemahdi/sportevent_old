@@ -48,7 +48,7 @@ class ReservationsController < ApplicationController
         @reservation.rameurs << current_rameur
         flash[:changed_reservation] = @reservation.id
 
-        format.html { redirect_to reservations_url, notice: 'Réservation enregistrée' }
+        format.html { redirect_to reservations_url, notice: "Réservation enregistrée" }
         format.json { render action: 'index', status: :created, location: reservations_url }
       else
         format.html { render action: 'new' }
@@ -89,8 +89,9 @@ class ReservationsController < ApplicationController
             nb_rameurs = @reservation.rameurs.size
             if nb_rameurs > 1
               # Notify the rameurs
+              contact = Contact.new(current_rameur)
               @reservation.rameurs.each do |rameur|
-                UserMailer.notify_reservation_email(rameur, current_rameur, @reservation).deliver if rameur!=current_rameur
+                UserMailer.notify_reservation_email(contact, rameur, @reservation).deliver if rameur.id!=current_rameur.id
               end
             end
 

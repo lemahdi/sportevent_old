@@ -60,7 +60,7 @@
 				  <%= @reservation.confirmation ? "oui" : "non" %>
 				</div>
 			</div>
-			</br></br>
+			<br /><br />
 
 			<div class="row">
 				<div class="span1 center">
@@ -72,7 +72,7 @@
 					<% else %>
 						<%= form_for(@reservation) do |f| %>
 	            <%= f.hidden_field :from_page, value: "edit" %>
-							<%= f.submit "J'ai réservé par téléphone", class: "btn btn-small btn-primary", data: { confirm: confirmation_message(@reservation) } %>
+							<%= f.submit "J'ai réservé par téléphone", class: "btn btn-small btn-info", data: { confirm: confirmation_message(@reservation) } %>
 						<% end %>
 					<% end %>
 				</div>
@@ -83,8 +83,13 @@
 					<div class="span1 center">
 						<%= image_tag "glyphicons_043_group.png", alt: "groupe" %>
 					</div>
-					<div class="span4">
-						<p>contacter le groupe</p>
+					<div class="span3">
+	          <%= form_tag contact_path, method: :put do %>
+	            <%= label_tag "Contacter le groupe" %>
+	            <%= hidden_field_tag :reservation_id, @reservation.id %>
+	            <%= text_area_tag :content %>
+	            <%= submit_tag "Envoyer", class: "btn btn-small btn-info" %>
+	          <% end %>
 					</div>
 				</div>
 
@@ -93,7 +98,7 @@
 						<%= image_tag "glyphicons_135_inbox_out.png", alt: "mail rameurs" %>
 					</div>
 					<div class="span4">
-						<p>contacter tous les rameurs</p>
+						<p>Contacter tous les rameurs</p>
 					</div>
 				</div>
 			<% end %>
@@ -106,7 +111,7 @@
 			  	<%= gravatar_for rameur %>
 				  <br><%= link_to "#{rameur.nom} #{rameur.prenom}", rameur_path(rameur) %>
 				</div>
-				</br>
+				<br />
 		  <% end %>
 		</div>
 	</div>

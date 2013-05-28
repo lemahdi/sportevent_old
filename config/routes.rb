@@ -15,11 +15,14 @@ Layolette::Application.routes.draw do
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
   get '/help'      => 'home#help'
+  
   get '/signup'    => 'rameurs#new'
   get '/signin'    => 'sessions#new'
   match '/signout' => 'sessions#destroy', via: :delete
+
   match '/contact' => 'contact#new', :as => 'contact', :via => :get
   match '/contact' => 'contact#create', :as => 'contact', :via => :post
+  match '/contact' => 'contact#update', :as => 'contact', :via => :put
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

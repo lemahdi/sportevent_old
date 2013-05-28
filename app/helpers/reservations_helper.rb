@@ -82,7 +82,7 @@ module ReservationsHelper
 	end
 
 	def responsable_confirmation(reservation)
-		message = "confirmée au téléphone"
+		message = "Confirmée au téléphone"
 		responsable = Rameur.find(reservation.responsable_id)
 		if responsable && reservation.rameurs.size > 1
 			message += " par"

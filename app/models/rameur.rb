@@ -7,6 +7,8 @@ class Rameur < ActiveRecord::Base
 	has_secure_password
 
 	before_save { email.downcase! }
+	before_save { nom.titleize! }
+	before_save { prenom.titleize! }
 	before_save :create_remember_token
 
 	validates :nom   , presence: true, length: { maximum: 50 }
