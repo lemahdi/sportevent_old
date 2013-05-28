@@ -37,7 +37,7 @@ class ContactController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to edit_reservation_path(reservation), notice: "Message envoyé" }
+      format.html { redirect_to reservation_path(reservation), notice: "Message envoyé" }
       format.json { render action: 'show', status: :updated, location: reservation }
     end
   end

@@ -1,9 +1,9 @@
 class ReservationsController < ApplicationController
-  before_action :set_reservation,           only: [:edit, :update, :destroy]
+  before_action :set_reservation,           only: [:show, :update, :destroy]
   
-  before_filter :signed_in_rameur,          only: [:index, :edit, :new, :create, :update, :destroy]
+  before_filter :signed_in_rameur,          only: [:index, :show, :new, :create, :update, :destroy]
   before_filter :check_params,              only: :create
-  before_filter :subscribed_to_reservation, only: [:edit, :destroy]
+  before_filter :subscribed_to_reservation, only: [:show, :destroy]
 
   # GET /reservations
   # GET /reservations.json
@@ -74,12 +74,12 @@ class ReservationsController < ApplicationController
         format.json { render action: 'index', status: :updated, location: reservations_url }
       end
 
-    elsif params[:reservation][:from_page] == "edit"
+    elsif params[:reservation][:from_page] == "show"
       if @reservation.confirmation
         message = "Réservation déjà confirmée"
         respond_to do |format|
-          format.html { redirect_to edit_reservation_url(@reservation), alert: message }
-          format.json { render action: 'edit', alert: message, location: edit_reservation_url(@reservation) }
+          format.html { redirect_to reservation_url(@reservation), alert: message }
+          format.json { render action: 'show', alert: message, location: reservation_url(@reservation) }
         end
       else
         @reservation.confirmation = true
@@ -99,10 +99,10 @@ class ReservationsController < ApplicationController
             if nb_rameurs > 1
               message += ", tous les rameurs ont été notifiés par mail"
             end
-            format.html { redirect_to edit_reservation_url(@reservation), notice: message }
-            format.json { render action: 'edit', status: :updated, location: edit_reservation_url(@reservation) }
+            format.html { redirect_to reservation_url(@reservation), notice: message }
+            format.json { render action: 'show', status: :updated, location: reservation_url(@reservation) }
           else
-            format.html { render action: 'edit' }
+            format.html { render action: 'show' }
             format.json { render json: @reservation.errors, status: :unprocessable_entity }
           end
         end

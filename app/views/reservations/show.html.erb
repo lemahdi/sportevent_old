@@ -1,61 +1,128 @@
 <% provide(:title, "Réservation") %>
 
 <% if notice %>
-<div class="row">
-	<div class="span8">
-		<div id="notice">
-			<p class="alert alert-success"><%= notice %></p>
+	<div class="row">
+		<div class="span8">
+			<div id="notice">
+				<p class="alert alert-success"><%= notice %></p>
+			</div>
 		</div>
 	</div>
-</div>
+<% end %>
+
+<% if alert %>
+	<div class="row">
+		<div class="span8">
+			<div id="notice">
+				<p class="alert alert-block"><%= alert %></p>
+			</div>
+		</div>
+	</div>
 <% end %>
 
 <div class="row">
-	<div class="span4">
+	<div class="span5">
 		<h1>Réservation <%= @reservation.id %></h1>
 	</div>
 </div>
 
 <div class="row">
-	<div class="span5">
-		<div class="span2">
-		  <strong>Jour:</strong>
-		</div>
-		<div class="span2">
-		  <%= @reservation.jour.strftime("%d/%m/%Y") %>
-		</div>
+	<div class="span11">
 
-		<div class="span2">
-		  <strong>Créneau:</strong>
-		</div>
-		<div class="span2">
-		  de
-		  <%= @reservation.creneau.debut.strftime("%H:%M") %>
-		  à
-		  <%= @reservation.creneau.fin.strftime("%H:%M") %>
-		</div>
+		<div class="span5">
 
-		<div class="span2">
-		  <strong>Aviron:</strong>
-		</div>
-		<div class="span2">
-		  <%= pluralize(@reservation.aviron.nbplaces, "place") %>
-		</div>
-
-		<div class="span2">
-		  <strong>Confirmation:</strong>
-		</div>
-		<div class="span2">
-		  <%= @reservation.confirmation ? "oui, par téléphone" : "non" %>
-		</div>
-	</div>
-	<div class="span3">
-	  <% @reservation.rameurs.each do |rameur| %>
 			<div class="row">
-		  	<%= gravatar_for rameur %>
-			  <br><%= link_to "#{rameur.nom} #{rameur.prenom}", rameur_path(rameur) %>
+				<div class="span2">
+				  <strong>Jour:</strong>
+				</div>
+				<div class="span2">
+				  <%= @reservation.jour.strftime("%d/%m/%Y") %>
+				</div>
+				<div class="span2">
+				  <strong>Créneau:</strong>
+				</div>
+				<div class="span2">
+				  De
+				  <%= @reservation.creneau.debut.strftime("%H:%M") %>
+				  à
+				  <%= @reservation.creneau.fin.strftime("%H:%M") %>
+				</div>
+				<div class="span2">
+				  <strong>Aviron:</strong>
+				</div>
+				<div class="span2">
+				  <%= pluralize(@reservation.aviron.nbplaces, "place") %>
+				</div>
+				<div class="span2">
+				  <strong>Confirmation:</strong>
+				</div>
+				<div class="span2">
+				  <%= @reservation.confirmation ? "Oui" : "Non" %>
+				</div>
 			</div>
-			</br>
-	  <% end %>
+			<br /><br />
+
+			<div class="row">
+				<div class="span1 center">
+					<%= image_tag "glyphicons_163_iphone.png", alt: "phone" %>
+				</div>
+				<div class="span4">
+					<% if @reservation.confirmation %>
+						<p><%= responsable_confirmation(@reservation) %></p>
+					<% else %>
+						<%= form_for(@reservation) do |f| %>
+	            <%= f.hidden_field :from_page, value: "show" %>
+							<%= f.submit "J'ai réservé par téléphone", class: "btn btn-small btn-info", data: { confirm: confirmation_message_group(@reservation) } %>
+						<% end %>
+					<% end %>
+				</div>
+			</div>
+			<br/>
+
+			<% if @reservation.rameurs.size > 1 %>
+				<div class="row">
+					<div class="span1 center">
+						<%= image_tag "glyphicons_043_group.png", alt: "groupe" %>
+					</div>
+					<div class="span3">
+	          <%= form_tag contact_path, method: :put do %>
+	            <%= hidden_field_tag :reservation_id, @reservation.id %>
+	            <%= hidden_field_tag :destination, "group" %>
+	            <%= text_area_tag :content %>
+	            <%= submit_tag "Je contacte le groupe", class: "btn btn-small btn-info" %>
+	          <% end %>
+					</div>
+				</div>
+				<br/>
+			<% end %>
+
+			<% if @reservation.aviron.nbplaces > 1 %>
+				<div class="row">
+					<div class="span1 center">
+						<%= image_tag "glyphicons_135_inbox_out.png", alt: "mail rameurs" %>
+					</div>
+					<div class="span3">
+	          <%= form_tag contact_path, method: :put do %>
+	            <%= hidden_field_tag :reservation_id, @reservation.id %>
+	            <%= hidden_field_tag :destination, "all" %>
+	            <%= text_area_tag :content %>
+	            <%= submit_tag "Je cherche un rameur", class: "btn btn-small btn-info", data: { confirm: "Cette action est irreversible. Si vous la validez, tous les rameurs du site seront notifiés par mail. Etes-vous sûrs de vouloir continuer ?" } %>
+	          <% end %>
+					</div>
+				</div>
+			<% end %>
+
+		</div>
+
+		<div class="span3">
+		  <% @reservation.rameurs.each do |rameur| %>
+				<div class="row">
+			  	<%= gravatar_for rameur %>
+				  <br><%= link_to "#{rameur.nom} #{rameur.prenom}", rameur_path(rameur) %>
+				</div>
+				<br />
+		  <% end %>
+		</div>
 	</div>
+
 </div>

@@ -18,7 +18,7 @@
           <td><%= reservation.id %></td>
           <td>
             <% if subscribed %>
-              <a href=<%= edit_reservation_path(reservation) %> >
+              <a href=<%= reservation_path(reservation) %> >
                 <%= image_tag "glyphicons_003_user.png", alt: "rameur" %>
               </a>
             <% end %>

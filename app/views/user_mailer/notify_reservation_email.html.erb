@@ -11,5 +11,5 @@
   <strong>Aviron:</strong> <%= pluralize(@reservation.aviron.nbplaces, "place") %><br>
 </p>
 <p>
-  Pour visualiser la réservation, suivez ce <%= link_to "lien", edit_reservation_url(@reservation) %>. Merci,
+  Pour visualiser la réservation, suivez ce <%= link_to "lien", reservation_url(@reservation) %>. Merci,
 </p>
