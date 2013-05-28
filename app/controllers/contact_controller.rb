@@ -1,5 +1,5 @@
 class ContactController < ApplicationController
-  before_filter :signed_in_rameur, only: [:new, :create, :update]
+  before_filter :signed_in_rameur, only: :update
 
   def new
   	@contact = Contact.new
