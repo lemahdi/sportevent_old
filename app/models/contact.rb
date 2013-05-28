@@ -20,9 +20,9 @@ class Contact
 		self.content = content
 	end
 
-	def initialize(rameur, subject = "")
-		self.nom = "#{rameur.nom} #{rameur.prenom}"
-		self.email = rameur.email
+	def initialize(rameur = nil, subject = "")
+		self.nom = "#{rameur.nom} #{rameur.prenom}" unless rameur.nil?
+		self.email = rameur.email unless rameur.nil?
 		self.subject = subject
 		self.rameur = rameur
 	end
