@@ -1,6 +1,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th>N°</th>
       <th></th>
       <th>Jour</th>
       <th>Créneau</th>
@@ -14,6 +15,7 @@
       <% subscribed = subscribed?(reservation) %>
       <% if @rameur && subscribed || !@rameur %>
         <tr class="<%= resa_class(reservation) %>" >
+          <td><%= reservation.id %></td>
           <td>
             <% if subscribed %>
               <a href=<%= edit_reservation_path(reservation) %> >
@@ -42,6 +44,7 @@
       <% end %>
     <% end %>
     <tr>
+      <td></td>
       <td></td>
       <td></td>
       <td></td>
