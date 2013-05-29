@@ -33,7 +33,7 @@ class ContactController < ApplicationController
       end
     elsif destination == "all"
       Rameur.all.each do |rameur|
-        UserMailer.notify_group_email(@contact, rameur, reservation).deliver if rameur.id != current_rameur.id
+        UserMailer.notify_group_email(@contact, rameur, reservation).deliver unless reservation.rameurs.include?(rameur)
       end
     end
 
