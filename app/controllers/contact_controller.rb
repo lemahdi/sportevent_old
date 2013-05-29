@@ -27,19 +27,26 @@ class ContactController < ApplicationController
     reservation = Reservation.find_by_id(params[:reservation_id])
     destination = params[:destination]
 
-    if destination == "group"
-      reservation.rameurs.each do |rameur|
-        UserMailer.notify_group_email(@contact, rameur, reservation).deliver if rameur.id != current_rameur.id
+    unless @contact.content.empty?
+      if destination == "group"
+        reservation.rameurs.each do |rameur|
+          UserMailer.notify_group_email(@contact, rameur, reservation).deliver if rameur.id != current_rameur.id
+        end
+      elsif destination == "all"
+        Rameur.all.each do |rameur|
+          UserMailer.notify_group_email(@contact, rameur, reservation).deliver unless reservation.rameurs.include?(rameur)
+        end
       end
-    elsif destination == "all"
-      Rameur.all.each do |rameur|
-        UserMailer.notify_group_email(@contact, rameur, reservation).deliver unless reservation.rameurs.include?(rameur)
-      end
-    end
 
-    respond_to do |format|
-      format.html { redirect_to reservation_path(reservation), notice: "Message envoyé" }
-      format.json { render action: 'show', status: :updated, location: reservation }
+      respond_to do |format|
+        format.html { redirect_to reservation_path(reservation), notice: "Message envoyé" }
+        format.json { render action: 'show', status: :updated, location: reservation }
+     end
+    else
+      respond_to do |format|
+        format.html { redirect_to reservation_path(reservation), alert: "Votre message est vide, il n'a pas été envoyé" }
+        format.json { render action: 'show', status: :unprocessable_entity, alert: "Votre message est vide, il n'a pas été envoyé", location: reservation }
+      end
     end
   end
 
