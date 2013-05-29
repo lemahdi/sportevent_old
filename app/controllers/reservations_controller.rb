@@ -89,7 +89,8 @@ class ReservationsController < ApplicationController
             nb_rameurs = @reservation.rameurs.size
             if nb_rameurs > 1
               # Notify the rameurs
-              contact = Contact.new(current_rameur)
+              contact = Contact.new
+              contact.build(current_rameur, "")
               @reservation.rameurs.each do |rameur|
                 UserMailer.notify_reservation_email(contact, rameur, @reservation).deliver if rameur.id!=current_rameur.id
               end

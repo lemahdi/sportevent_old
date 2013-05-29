@@ -6,7 +6,7 @@
   
   Voici les détails :<br>
   <strong>Jour:</strong> <%= @reservation.jour.strftime("%d/%m/%Y") %><br>
-  <strong>Créneau:</strong> de <%= @reservation.creneau.debut.strftime("%H:%M") %>
+  <strong>Créneau:</strong> De <%= @reservation.creneau.debut.strftime("%H:%M") %>
   à <%= @reservation.creneau.fin.strftime("%H:%M") %><br>
   <strong>Aviron:</strong> <%= pluralize(@reservation.aviron.nbplaces, "place") %><br>
 </p>

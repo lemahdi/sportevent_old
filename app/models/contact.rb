@@ -13,16 +13,9 @@ class Contact
 	validates_length_of :subject, maximum: 50
 	validates :content, presence: true, length: { maximum: 500 }
 
-	def initialize(nom, email, subject, content)
-		self.nom = nom
-		self.email = email
-		self.subject = subject
-		self.content = content
-	end
-
-	def initialize(rameur = nil, subject = "")
-		self.nom = "#{rameur.nom} #{rameur.prenom}" unless rameur.nil?
-		self.email = rameur.email unless rameur.nil?
+	def build(rameur, subject)
+		self.nom = "#{rameur.nom} #{rameur.prenom}"
+		self.email = rameur.email
 		self.subject = subject
 		self.rameur = rameur
 	end

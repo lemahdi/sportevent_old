@@ -11,7 +11,7 @@ class ContactController < ApplicationController
     respond_to do |format|
       if @contact.valid?
         UserMailer.contact_email(@contact).deliver
-        format.html { redirect_to root_url, notice: 'Message envoyé' }
+        format.html { redirect_to root_url, notice: "Message envoyé" }
         format.json { head :no_content, status: :success, location: root_url }
       else
         format.html { render action: 'new' }
@@ -21,7 +21,8 @@ class ContactController < ApplicationController
   end
 
   def update
-    @contact = Contact.new(current_rameur)
+    @contact = Contact.new
+    @contact.build(current_rameur, "")
     @contact.content = params[:content]
     reservation = Reservation.find_by_id(params[:reservation_id])
     destination = params[:destination]
