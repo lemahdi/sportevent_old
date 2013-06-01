@@ -141,7 +141,13 @@ class ReservationsController < ApplicationController
       flash[:creneau_id] = creneau_id
       flash[:aviron_id] = reservation_params[:aviron_id]
 
-      if jour.to_date < Date.today
+      jour_date = Date.parse(jour) rescue nil
+
+      if jour_date.nil?
+        flash[:jour] = Date.today.strftime('%d-%m-%Y')
+        is_valid = false
+        message = "Le jour de réservation n'est pas valide"
+      elsif jour.to_date < Date.today
         is_valid = false
         message = "Le jour de réservation doit être postérieur à aujourd'hui"
       elsif creneau_id.include?("---") || creneau_id==""

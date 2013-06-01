@@ -10,13 +10,17 @@ class Reservation < ActiveRecord::Base
   validates :jour, presence: true
   validates :creneau_id, presence: true
   validates :aviron_id, presence: true
-  validate :empty_place
+  validate :empty_place, :jour_cannot_be_after_3months
 
   scope :recent, -> { where("reservations.jour >= ?", Date.today) }
   scope :asc,    -> attr { order("reservations.#{attr} ASC") }
 
   private
     def empty_place
-      errors.add(:aviron, "Aviron #{aviron.id} est rempli") if self.rameurs.size > self.aviron.nbplaces
+      errors.add(:aviron, "#{aviron.id} est rempli") if self.rameurs.size > self.aviron.nbplaces
+    end
+
+    def jour_cannot_be_after_3months
+      errors.add(:jour, "ne peut pas être au delà de 3 mois") if self.jour > (Date.today+3.months)
     end
 end
