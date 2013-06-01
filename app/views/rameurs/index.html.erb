@@ -18,7 +18,7 @@
   <% @rameurs.each do |rameur| %>
     <div class="row">
       <div class="span1">
-        <%= gravatar_for rameur %>
+        <%= link_to(gravatar_for(rameur), rameur_path(rameur)) %>
       </div>
       <div class="span3">
         <div>
