@@ -1,7 +1,7 @@
 class RameursController < ApplicationController
   before_action :set_rameur,       only: [:show, :edit, :update, :destroy]
   
-  before_filter :signed_in_rameur, only: [:index, :edit, :update]
+  before_filter :signed_in_rameur, only: [:index, :show, :edit, :update]
   before_filter :correct_rameur,   only: [:edit, :update]
   before_filter :admin_rameur,     only: :destroy
 
