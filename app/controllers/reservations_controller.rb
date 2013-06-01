@@ -64,7 +64,7 @@ class ReservationsController < ApplicationController
       flash[:changed_reservation] = @reservation.id
       if params[:participate] == "yes"
         @reservation.rameurs << current_rameur
-        message = "Félicitations, vous avez rejoins l'équipage"
+        message = "Félicitations, vous avez rejoint l'équipage"
       else
         @reservation.rameurs.delete(current_rameur)
         message = "Vous avez quitté l'équipage"
