@@ -1,4 +1,5 @@
 Layolette::Application.routes.draw do
+  devise_for :rameurs
   get "home/index"
   resources :rameurs do
     resources :reservations, only: [:index]
