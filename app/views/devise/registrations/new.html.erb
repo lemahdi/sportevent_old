@@ -1,18 +1,59 @@
-<h2>Sign up</h2>
+<% provide(:title, 'Inscription') %>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<h1>S'inscrire</h1>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  		<!-- <%= devise_error_messages! %> -->
+      <% if @rameur.errors.any? %>
+        <div id="error_explanation">
+          <div class="alert alert-error">
+            <strong><%= pluralize(@rameur.errors.count, "erreur") %> :</strong>
+            <ul>
+              <% @rameur.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+      <div class="field">
+      	<br />
+        <%= f.label :nom %>
+        <%= f.text_field :nom %>
+      </div>
+      <div class="field">
+      	<br />
+        <%= f.label :prenom %>
+        <%= f.text_field :prenom %>
+      </div>
+      <div class="field">
+      	<br />
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+      </div>
+      <div class="field">
+      	<br />
+        <%= f.label :password, "Mot de passe" %>
+        <%= f.password_field :password %>
+      </div>
+      <div class="field">
+      	<br />
+        <%= f.label :password_confirmation, "Confirmation du mot de passe" %>
+        <%= f.password_field :password_confirmation %>
+      </div>
+      <div class="actions">
+      	<br />
+      	<div class="span2">
+        	<%= f.submit "S'inscrire", class: "btn btn-large btn-primary" %>
+      	</div>
+      	<div class="span3">
+      		<%= render "devise/shared/links" %>
+      	</div>
+      </div>
+    <% end %>
+  </div>
+</div>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>

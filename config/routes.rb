@@ -4,7 +4,7 @@ Layolette::Application.routes.draw do
   resources :rameurs do
     resources :reservations, only: [:index]
   end
-  resources :sessions, only: [:new, :create, :destroy]
+  # resources :sessions, only: [:new, :create, :destroy]
   resources :reservations, only: [:index, :show, :new, :create, :update, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.

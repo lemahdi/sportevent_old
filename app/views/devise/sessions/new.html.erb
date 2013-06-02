@@ -1,17 +1,50 @@
-<h2>Sign in</h2>
+<% provide(:title, 'Identification') %>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+<h1>S'identifier</h1>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <% if @rameur.errors.any? %>
+        <div id="error_explanation">
+          <div class="alert alert-error">
+            <strong><%= pluralize(@rameur.errors.count, "erreur") %> :</strong>
+            <ul>
+              <% @rameur.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
+      <div class="field">
+      	<br />
+        <%= f.label :email %>
+        <%= f.email_field :email, :autofocus => true %>
+      </div>
+      <div class="field">
+      	<br />
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      </div>
 
-  <div><%= f.submit "Sign in" %></div>
-<% end %>
+		  <% if devise_mapping.rememberable? -%>
+		    <div class="field">
+		    	<%= f.check_box :remember_me %>
+		    	<%= f.label :remember_me %>
+		    </div>
+		  <% end -%>
 
-<%= render "devise/shared/links" %>
+      <div class="actions">
+      	<br />
+      	<div class="span2">
+      		<%= f.submit "S'identifier", class: "btn btn-large btn-primary" %>
+      	</div>
+      	<div class="span2">
+      		<%= render "devise/shared/links" %>
+      	</div>
+      </div>
+    <% end %>
+  </div>
+</div>
