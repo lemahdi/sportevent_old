@@ -230,7 +230,7 @@ fr:
       not_saved:
         one: "1 erreur a empêché ce(tte) %{resource} d'être sauvegardé(e) :"
         other: "%{count} erreurs ont empêché ce(tte) %{resource} d'être sauvegardé(e) :"
- 
+
   devise:
     shared:
       sign_in: "Se connecter"
@@ -264,7 +264,7 @@ fr:
       send_instructions: 'Vous allez recevoir les instructions nécessaires à la confirmation de votre compte dans quelques minutes'
       confirmed: 'Votre compte a été validé, vous êtes maintenant connecté'
     registrations:
-      signed_up: 'Bienvenu, vous êtes connecté'
+      signed_up: 'Bienvenu(e), vous êtes connecté(e)'
       edit: "Editer %{resourcename}"
       leave_blank: "laissez vide si vous ne désirez pas le changer"
       current_password_label: "Nous avons besoin de votre mot de passe actuel pour confirmer les changements"

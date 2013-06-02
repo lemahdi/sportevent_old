@@ -1,5 +1,6 @@
 Layolette::Application.routes.draw do
-  devise_for :rameurs
+  devise_for :rameurs, controllers: { registrations: "rameurs/registrations" }
+
   get "home/index"
   resources :rameurs do
     resources :reservations, only: [:index]
