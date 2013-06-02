@@ -17,9 +17,9 @@ Layolette::Application.routes.draw do
   #   get 'products/:id' => 'catalog#view'
   get '/help'      => 'home#help'
   
-  get '/signup'    => 'rameurs#new'
-  get '/signin'    => 'sessions#new'
-  match '/signout' => 'sessions#destroy', via: :delete
+  # get '/signup'    => 'rameurs#new'
+  # get '/signin'    => 'sessions#new'
+  # match '/signout' => 'sessions#destroy', via: :delete
 
   match '/contact' => 'contact#new', :as => 'contact', :via => :get
   match '/contact' => 'contact#create', :as => 'contact', :via => :post
