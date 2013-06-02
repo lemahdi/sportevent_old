@@ -1,25 +1,5 @@
 <% provide(:title, "Réservation") %>
 
-<% if notice %>
-	<div class="row">
-		<div class="span8">
-			<div id="notice">
-				<p class="alert alert-success"><%= notice %></p>
-			</div>
-		</div>
-	</div>
-<% end %>
-
-<% if alert %>
-	<div class="row">
-		<div class="span8">
-			<div id="notice">
-				<p class="alert alert-block"><%= alert %></p>
-			</div>
-		</div>
-	</div>
-<% end %>
-
 <div class="row">
 	<div class="span5">
 		<h1>Réservation <%= @reservation.id %></h1>

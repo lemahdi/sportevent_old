@@ -2,16 +2,6 @@
 
 <h1>Tous les rameurs</h1>
 
-<% if notice %>
-<div class="row">
-  <div class="span8">
-    <div id="notice">
-      <p class="alert alert-success"><%= notice %></p>
-    </div>
-  </div>
-</div>
-<% end %>
-
 <%= will_paginate_fr @rameurs %>
 
 <ul class="rameurs">

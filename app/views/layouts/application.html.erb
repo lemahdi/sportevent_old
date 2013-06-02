@@ -11,6 +11,27 @@
 
 	<%= render 'layouts/header' %>
   <div class="container">
+
+    <% if notice %>
+      <div class="row">
+        <div class="span8">
+          <div id="notice">
+            <p class="alert alert-success"><%= notice %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <% if alert %>
+      <div class="row">
+        <div class="span8">
+          <div id="notice">
+            <p class="alert alert-block"><%= alert %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
     <%= yield %>
     <%= render 'layouts/footer' %>
     <%= debug(params) if Rails.env.development? %>
