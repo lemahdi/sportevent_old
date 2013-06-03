@@ -62,6 +62,15 @@
         </div>
       </div>
     <% end %>
+
+    <div>
+      <br /><br /><br />
+      <%= label_tag "Vous n'êtes pas content(e) ?" %>
+      <div class="span2">
+        <%= button_to "Supprimer mon compte", registration_path(resource_name), :data => { :confirm => "Êtes-vous sûr(e) ?" }, :method => :delete, class: "btn btn-large" %>
+      </div>
+    </div>
+
   </div>
 </div>
 
