@@ -1,0 +1,55 @@
+<% provide(:title, 'Inscription') %>
+
+<h1>Valider</h1>
+<i>Créer votre mot de passe pour accéder à votre compte en toute sécurité</i>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
+  		<!-- <%= devise_error_messages! %> -->
+      <% if @rameur.errors.any? %>
+        <div id="error_explanation">
+          <div class="alert alert-error">
+            <strong><%= pluralize(@rameur.errors.count, "erreur") %> :</strong>
+            <ul>
+              <% @rameur.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="field">
+      	<br />
+        <%= f.label :nom %>
+        <%= f.text_field :nom %>
+      </div>
+      <div class="field">
+      	<br />
+        <%= f.label :prenom %>
+        <%= f.text_field :prenom %>
+      </div
+      <div class="field">
+      	<br />
+        <%= f.label :password, "Mot de passe" %>
+        <%= f.password_field :password %>
+      </div>
+      <div class="field">
+      	<br />
+        <%= f.label :password_confirmation, "Confirmation du mot de passe" %>
+        <%= f.password_field :password_confirmation %>
+      </div>
+      <%= f.hidden_field :confirmation_token %>
+      <div class="actions">
+      	<br />
+      	<div class="span2">
+        	<%= f.submit "Confirmer", class: "btn btn-large btn-primary" %>
+      	</div>
+      	<div class="span3">
+      		<%= render "devise/shared/links" %>
+      	</div>
+      </div>
+    <% end %>
+  </div>
+</div>

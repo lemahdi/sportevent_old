@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130602151325) do
+ActiveRecord::Schema.define(version: 20130603233940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,10 +45,21 @@ ActiveRecord::Schema.define(version: 20130602151325) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.integer  "failed_attempts",        default: 0
+    t.string   "unlock_token"
+    t.datetime "locked_at"
+    t.string   "authentication_token"
   end
 
+  add_index "rameurs", ["authentication_token"], name: "index_rameurs_on_authentication_token", unique: true
+  add_index "rameurs", ["confirmation_token"], name: "index_rameurs_on_confirmation_token", unique: true
   add_index "rameurs", ["email"], name: "index_rameurs_on_email", unique: true
   add_index "rameurs", ["reset_password_token"], name: "index_rameurs_on_reset_password_token", unique: true
+  add_index "rameurs", ["unlock_token"], name: "index_rameurs_on_unlock_token", unique: true
 
   create_table "registres", force: true do |t|
     t.integer  "rameur_id"

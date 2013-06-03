@@ -1,5 +1,8 @@
 Layolette::Application.routes.draw do
-  devise_for :rameurs, controllers: { registrations: "rameurs/registrations" }
+  devise_for :rameurs, controllers: { registrations: "rameurs/registrations", confirmations: "rameurs/confirmations" }
+  devise_scope :rameur do
+    put "confirmation" => "confirmations#confirm"
+  end
 
   get "home/index"
   resources :rameurs do
