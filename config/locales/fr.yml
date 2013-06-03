@@ -240,17 +240,17 @@ fr:
       didnt_receive_unlock_instructions?: "Email de déverrouillage non reçu ?"
       sign_in_with_omniauth: "Se connecter via %{provider}"
     failure:
-      already_authenticated: "Vous êtes déjà connecté !"
-      unauthenticated: "Vous devez vous connecter ou vous inscrire pour continuer."
-      unconfirmed: "Vous devez valider votre compte pour continuer."
-      locked: "Votre compte est verrouillé."
-      invalid: "Email ou mot de passe incorrect."
-      invalid_token: "Jeton d'authentification incorrect."
-      timeout: "Votre session est expirée, veuillez vous reconnecter pour continuer."
-      inactive: "Votre compte n'est pas encore activé."
+      already_authenticated: "Vous êtes déjà connecté(e) !"
+      unauthenticated: "Vous devez vous connecter ou vous inscrire pour continuer"
+      unconfirmed: "Vous devez valider votre compte pour continuer"
+      locked: "Votre compte est verrouillé"
+      invalid: "Email ou mot de passe incorrect"
+      invalid_token: "Jeton d'authentification incorrect"
+      timeout: "Votre session est expirée, veuillez vous reconnecter pour continuer"
+      inactive: "Votre compte n'est pas encore activé"
     sessions:
-      signed_in: "Connecté."
-      signed_out: "Déconnecté."
+      signed_in: "Connecté(e)"
+      signed_out: "Déconnecté(e)"
     passwords:
       change_your_password: "Changez votre mot de passe"
       new_password: "Nouveau mot de passe"
@@ -258,7 +258,7 @@ fr:
       change_my_password: "Changer mon mot de passe"
       send_reset_password_instructions: "Envoyez-moi les instructions de réinitialisation"
       send_instructions: 'Vous allez recevoir les instructions de réinitialisation du mot de passe dans quelques instants'
-      updated: 'Votre mot de passe a été édité avec succès, vous êtes maintenant connecté'  
+      updated: 'Votre mot de passe a été édité avec succès, vous êtes maintenant connecté(e)'  
     confirmations:
       resend_instructions: 'Ré-envoyer les instructions de confirmation'
       send_instructions: 'Vous allez recevoir les instructions nécessaires à la confirmation de votre compte dans quelques minutes'
@@ -273,7 +273,7 @@ fr:
       cancel_my_account: "Supprimer mon compte"
       confirm: "Êtes-vous sûr ?"
       back: "Retour"
-      inactive_signed_up: "Votre compte a été trouvé. Cependant, nous n'avons pas pu vous connecter car votre compte est %{reason}."
+      inactive_signed_up: "Votre compte a été trouvé. Cependant, nous n'avons pas pu vous connecter car votre compte est %{reason}"
       updated: 'Votre compte a été modifié avec succès.'
       destroyed: 'Votre compte a été supprimé avec succès. Nous espérons vous revoir bientôt.'
     unlocks:
@@ -282,16 +282,16 @@ fr:
       unlocked: 'Votre compte a été débloqué avec succès, vous êtes maintenant connecté.'
     omniauth_callbacks:
       success: 'Authentifié avec succès via %{kind}.'
-      failure: "Nous n'avons pas pu vous authentifier via %{kind} : '%{reason}'."
+      failure: "Nous n'avons pas pu vous authentifier via %{kind} : '%{reason}'"
     mailer:
       hello: "Bienvenu %{email} !"
       welcome: "Bienvenu %{email} !"
       confirm: "Valider mon compte"
       change: 'Changer mon mot de passe'
-      someone_requested: "Un changement de mot de passe a été demandé. Vous pouvez le faire en cliquant sur le lien ci-dessous."
-      please_ignore: "Si vous n'avez pas fait cette demande, veuillez ignorer cet email."
-      password_wont_change: "Votre mot de passe ne sera pas changé tant que vous n'aurez pas accédé au lien ci-dessus pour en créer un nouveau."
-      locked: "Votre compte a été bloqué à cause d'un nombre excessif de tentatives de connexion."
+      someone_requested: "Un changement de mot de passe a été demandé. Vous pouvez le faire en cliquant sur le lien ci-dessous"
+      please_ignore: "Si vous n'avez pas fait cette demande, veuillez ignorer cet email"
+      password_wont_change: "Votre mot de passe ne sera pas changé tant que vous n'aurez pas accédé au lien ci-dessus pour en créer un nouveau"
+      locked: "Votre compte a été bloqué à cause d'un nombre excessif de tentatives de connexion"
       click_to_unlock: "Cliquez sur le lien ci-dessous pour déverrouiller votre compte"
       unlock: "Déverrouiller mon compte"
       confirmation_instructions:
