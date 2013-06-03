@@ -6,4 +6,9 @@ module RameursHelper
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}"
     image_tag(gravatar_url, alt: rameur.email, class: "gravatar")
   end
+
+  # Check whether the current rameur is the instance rameur
+  def correct_rameur?
+    current_rameur == @rameur
+  end
 end

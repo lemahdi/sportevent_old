@@ -97,9 +97,4 @@ class RameursController < ApplicationController
     def rameur_params
       params.require(:rameur).permit(:nom, :prenom, :email, :password, :password_confirmation)
     end
-
-    # Check whether the current rameur is the instance rameur
-    def correct_rameur?
-      current_rameur == @rameur
-    end
 end

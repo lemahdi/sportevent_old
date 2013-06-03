@@ -16,6 +16,11 @@ class Rameurs::RegistrationsController < Devise::RegistrationsController
       end
     end
 
+    # Redirect to stored page on successful update
+    def after_update_path_for(resource)
+      rameur_path(resource)
+    end
+
   # private
   # 	:resource_params
 

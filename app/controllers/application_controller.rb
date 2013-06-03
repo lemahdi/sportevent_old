@@ -20,11 +20,6 @@ class ApplicationController < ActionController::Base
       session[:previous_url] || rameur_path(resource)
     end
 
-    # Redirect to stored page on successful update
-    def after_update_path_for(resource)
-      rameur_path(resource)
-    end
-
     # Redirect to root page on successful sign out
     def after_sign_out_path_for(resource)
       root_path
