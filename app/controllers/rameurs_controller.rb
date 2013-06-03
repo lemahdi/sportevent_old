@@ -1,10 +1,11 @@
 class RameursController < ApplicationController
   before_action :set_rameur,       only: [:show, :edit, :update, :destroy]
   
+  before_filter :store_location
   before_filter :authenticate_rameur!
-  before_filter :signed_in_rameur, only: [:index, :show, :edit, :update]
-  before_filter :correct_rameur,   only: [:edit, :update]
-  before_filter :admin_rameur,     only: :destroy
+  # before_filter :rameur_signed_in?
+  before_filter :correct_rameur?, only: [:edit, :update]
+  before_filter :admin_rameur,    only: :destroy
 
   # GET /rameurs
   # GET /rameurs.json
@@ -95,5 +96,10 @@ class RameursController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def rameur_params
       params.require(:rameur).permit(:nom, :prenom, :email, :password, :password_confirmation)
+    end
+
+    # Check whether the current rameur is the instance rameur
+    def correct_rameur?
+      current_rameur == @rameur
     end
 end

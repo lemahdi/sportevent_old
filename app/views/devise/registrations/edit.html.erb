@@ -1,29 +1,74 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<% provide(:title, 'Mise à jour') %>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
+<h1>Informations</h1>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+      <!-- <%= devise_error_messages! %> -->
+      <% if @rameur.errors.any? %>
+        <div id="error_explanation">
+          <div class="alert alert-error">
+            <strong><%= pluralize(@rameur.errors.count, "erreur") %> :</strong>
+            <ul>
+              <% @rameur.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+      <div class="field">
+        <br />
+        <%= f.label :nom %>
+        <%= f.text_field :nom %>
+      </div>
+      <div class="field">
+        <br />
+        <%= f.label :prenom %>
+        <%= f.text_field :prenom %>
+      </div>
+      <div class="field">
+        <br />
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+      </div>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password, :autocomplete => "off" %></div>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+      <div class="field">
+        <br />
+        <%= f.label :password, "Nouveau mot de passe" %> <i>(laissez vide si vous ne voulez pas le modifier)</i>
+        <%= f.password_field :password, :autocomplete => "off" %>
+      </div>
+      <div class="field">
+        <br />
+        <%= f.label :password_confirmation, "Confirmation du nouveau mot de passe" %>
+        <%= f.password_field :password_confirmation %>
+      </div>
+      <div class="field">
+        <br />
+        <%= f.label :current_password, "Mot de passe actuel" %> <i>(nous avons besoin de votre mot de passe actuel pour valider vos modifications)</i>
+        <%= f.password_field :current_password %>
+      </div>
 
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
+      <div class="actions">
+        <br />
+        <div class="span2">
+          <%= f.submit "Changer", class: "btn btn-large btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
 
-  <div><%= f.submit "Update" %></div>
-<% end %>
 
-<h3>Cancel my account</h3>
+<!-- <h3>Supprimer mon compte</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %></p>
+<p>Vous n'êtes pas content(e) ? <%= button_to "Supprimer mon compte", registration_path(resource_name), :data => { :confirm => "Êtes-vous sûr(e) ?" }, :method => :delete %></p>
 
-<%= link_to "Back", :back %>
+
+<%= link_to "Back", :back %> -->

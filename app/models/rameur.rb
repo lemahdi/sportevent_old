@@ -25,8 +25,10 @@ class Rameur < ActiveRecord::Base
 	validates :email , presence:   true,
 									 	 format:     { with: VALID_EMAIL_REGEXP },
 									 	 uniqueness: { case_sensitive: false }
-	validates :password, presence: true, length: { minimum: 8 }
-	validates :password_confirmation, presence: true
 
   scope :asc, -> attr { order("rameurs.#{attr} ASC") }
+
+  def admin?
+  	false
+  end
 end
