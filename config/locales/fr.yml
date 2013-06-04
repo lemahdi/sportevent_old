@@ -262,7 +262,7 @@ fr:
       updated: "Votre mot de passe a été édité avec succès, vous êtes maintenant connecté(e)"
     confirmations:
       resend_instructions: "Ré-envoyer les instructions de confirmation"
-      send_instructions: "Vous allez recevoir les instructions nécessaires à la confirmation de votre compte dans quelques minutes"
+      send_instructions: "Vous allez recevoir par mail les instructions nécessaires à l'ouverture de votre compte dans quelques minutes"
       confirmed: "Votre compte a été validé, vous êtes maintenant connecté"
     registrations:
       signed_up: "Bienvenu(e), vous êtes connecté(e)"
