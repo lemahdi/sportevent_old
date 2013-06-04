@@ -7,9 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # Admin
-Rameur.create(nom: "Akkouh", prenom: "Mahdi", email: "akkouh.mahdi@gmail.com",
-							password: "foobar", password_confirmation: "foobar", admin: true)
-Rameur.first.update(password: "foobar", password_confirmation: "foobar", admin: true)
+# Rameur.create(nom: "Akkouh", prenom: "Mahdi", email: "akkouh.mahdi@gmail.com",
+# 							password: "foobar", password_confirmation: "foobar", admin: true)
+# Rameur.first.update(password: "foobar", password_confirmation: "foobar", admin: true)
 
 # Aviron model
 Aviron.create(description: "simple", nbplaces: 1)

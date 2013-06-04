@@ -16,12 +16,10 @@ class Rameur < ActiveRecord::Base
 	before_save { email.downcase! }
 
 	VALID_NAME = /\A[a-zA-Z][a-zA-Z0-9_ ]+\z/i
-	validates :nom   , presence: true,
-										 length:   { maximum: 50 },
-										 format:   { with: VALID_NAME, message: "doit commencer par un caractère alphabétique et ne peut contenir que les caractères espace, alphanumériques et _" }
-	validates :prenom, presence: true,
-										 length:   { maximum: 50 },
-										 format:   { with: VALID_NAME, message: "doit commencer par un caractère alphabétique et ne peut contenir que les caractères espace, alphanumériques et _" }
+	validates :nom   , presence: false,
+										 length:   { maximum: 50 }
+	validates :prenom, presence: false,
+										 length:   { maximum: 50 }
 	VALID_EMAIL_REGEXP = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 	validates :email , presence:   true,
 									 	 format:     { with: VALID_EMAIL_REGEXP },
