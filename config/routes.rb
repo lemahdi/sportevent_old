@@ -1,14 +1,14 @@
 Layolette::Application.routes.draw do
   devise_for :rameurs, controllers: { registrations: "rameurs/registrations", confirmations: "rameurs/confirmations" }
   devise_scope :rameur do
-    put "/confirm" => "confirmations#confirm"
+    put "/confirm" => "rameurs/confirmations#confirm"
   end
 
   get "home/index"
+
   resources :rameurs do
     resources :reservations, only: [:index]
   end
-  # resources :sessions, only: [:new, :create, :destroy]
   resources :reservations, only: [:index, :show, :new, :create, :update, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -25,7 +25,7 @@ Layolette::Application.routes.draw do
   # get '/signin'    => 'sessions#new'
   # match '/signout' => 'sessions#destroy', via: :delete
 
-  match '/contact' => 'contact#new', :as => 'contact', :via => :get
+  match '/contact' => 'contact#new',    :as => 'contact', :via => :get
   match '/contact' => 'contact#create', :as => 'contact', :via => :post
   match '/contact' => 'contact#update', :as => 'contact', :via => :put
 

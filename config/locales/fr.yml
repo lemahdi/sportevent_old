@@ -279,8 +279,8 @@ fr:
       destroyed: "Votre compte a été supprimé avec succès. Nous espérons vous revoir bientôt"
       signed_up_but_inactive: "Vous vous êtes inscrit avec succès. Votre compte est en attente d'activation"
       signed_up_but_locked: "Vous vous êtes inscrit avec succès. Votre compte est vérrouillé pour le moment"
-      signed_up_but_unconfirmed: "A message with a confirmation link has been sent to your email address. Please open the link to activate your account"
-      update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and click on the confirm link to finalize confirming your new email address"
+      signed_up_but_unconfirmed: "Merci de votre inscription. Un message de confirmation vous a été envoyé pour activer votre compte"
+      update_needs_confirmation: "Vous avez modifié votre adresse email. Pour activer cette modification, un message de confirmation vous a été envoyé par email"
     unlocks:
       resend_instructions: "Ré-envoyer les instructions de déblocage"
       send_instructions: "Vous allez recevoir les instructions nécessaires au déblocage de votre compte dans quelques instants"

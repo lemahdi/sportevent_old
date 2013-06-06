@@ -21,6 +21,11 @@ class Rameurs::RegistrationsController < Devise::RegistrationsController
       rameur_path(resource)
     end
 
+    # Redirect to rameur page on successful signu
+    def after_signup_path_for(resource)
+      rameur_path(resource)
+    end
+
   # private
   # 	:resource_params
 
