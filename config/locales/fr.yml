@@ -225,7 +225,7 @@ fr:
     messages:
       expired: "a expiré, merci d'en faire une nouvelle demande"
       not_found: "n'a pas été trouvé(e)"
-      already_confirmed: "a déjà été validé(e)"
+      already_confirmed: "a déjà été validé"
       not_locked: "n'était pas verrouillé(e)"
       not_saved:
         one: "1 erreur a empêché ce(tte) %{resource} d'être sauvegardé(e) :"

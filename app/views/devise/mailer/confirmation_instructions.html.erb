@@ -1,5 +1,5 @@
 <p>Bienvenu <%= @email %>!</p>
 
-<p>Vous pouvez valider votre compte en suivant le lien ci-dessous:</p>
+<p>Vous pouvez activer votre compte en suivant le lien ci-dessous:</p>
 
-<p><%= link_to 'Valider mon compte', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+<p><%= link_to 'Activer mon compte', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>

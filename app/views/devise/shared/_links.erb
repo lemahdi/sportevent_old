@@ -10,6 +10,8 @@
   <%= link_to "Mot de passe oublié ?", new_password_path(resource_name) %><br />
 <% end -%>
 
+<!--
+	
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
   <%= link_to "Je n'ai pas reçu(e) la confirmation ?", new_confirmation_path(resource_name) %><br />
 <% end -%>
@@ -23,3 +25,5 @@
     <%= link_to "Identification avec #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider) %><br />
   <% end -%>
 <% end -%>
+
+-->
