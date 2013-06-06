@@ -1,16 +1,46 @@
-<h2>Change your password</h2>
+<% provide(:title, 'Réinitialisation du mot de passe') %>
 
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
+<h1>Mot de passe</h1>
 
-  <div><%= f.label :password, "New password" %><br />
-  <%= f.password_field :password, :autofocus => true %></div>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+  		<!-- <%= devise_error_messages! %> -->
+      <% if @rameur.errors.any? %>
+        <div id="error_explanation">
+          <div class="alert alert-error">
+            <strong><%= pluralize(@rameur.errors.count, "erreur") %> :</strong>
+            <ul>
+              <% @rameur.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
 
-  <div><%= f.label :password_confirmation, "Confirm new password" %><br />
-  <%= f.password_field :password_confirmation %></div>
+      <%= f.hidden_field :reset_password_token %>
 
-  <div><%= f.submit "Change my password" %></div>
-<% end %>
+      <div class="field">
+      	<br />
+        <%= f.label :password, "Nouveau mot de passe" %>
+        <%= f.password_field :password, autofocus: true %>
+      </div>
+      <div class="field">
+      	<br />
+        <%= f.label :password_confirmation, "Confirmer le nouveau mot de passe" %>
+        <%= f.password_field :password_confirmation %>
+      </div>
+      <div class="actions">
+      	<br />
+      	<div class="span2">
+        	<%= f.submit "Changer", class: "btn btn-large btn-primary" %>
+      	</div>
+      	<div class="span3">
+      		<%= render "devise/shared/links" %>
+      	</div>
+      </div>
+    <% end %>
+  </div>
+</div>
 
-<%= render "devise/shared/links" %>

@@ -1,12 +1,39 @@
-<h2>Forgot your password?</h2>
+<% provide(:title, 'Mot de passe oublié') %>
 
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
+<h1>Mot de passe</h1>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+  		<!-- <%= devise_error_messages! %> -->
+      <% if @rameur.errors.any? %>
+        <div id="error_explanation">
+          <div class="alert alert-error">
+            <strong><%= pluralize(@rameur.errors.count, "erreur") %> :</strong>
+            <ul>
+              <% @rameur.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
 
-  <div><%= f.submit "Send me reset password instructions" %></div>
-<% end %>
+      <div class="field">
+      	<br />
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true %>
+      </div>
+      <div class="actions">
+      	<br />
+      	<div class="span2">
+        	<%= f.submit "Réinitialiser", class: "btn btn-large btn-primary" %>
+      	</div>
+      	<div class="span3">
+      		<%= render "devise/shared/links" %>
+      	</div>
+      </div>
+    <% end %>
+  </div>
+</div>
 
-<%= render "devise/shared/links" %>

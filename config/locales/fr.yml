@@ -259,11 +259,11 @@ fr:
       change_my_password: "Changer mon mot de passe"
       send_reset_password_instructions: "Envoyez-moi les instructions de réinitialisation"
       send_instructions: "Vous allez recevoir les instructions de réinitialisation du mot de passe dans quelques instants"
-      updated: "Votre mot de passe a été édité avec succès, vous êtes maintenant connecté(e)"
+      updated: "Votre mot de passe a été modifié avec succès, vous êtes maintenant connecté(e)"
     confirmations:
       resend_instructions: "Ré-envoyer les instructions de confirmation"
       send_instructions: "Vous allez recevoir par mail les instructions nécessaires à l'ouverture de votre compte dans quelques minutes"
-      confirmed: "Votre compte a été validé, vous êtes maintenant connecté"
+      confirmed: "Votre compte a été validé, vous êtes maintenant connecté(e)"
     registrations:
       signed_up: "Bienvenu(e), vous êtes connecté(e)"
       edit: "Editer %{resourcename}"
@@ -279,8 +279,8 @@ fr:
       destroyed: "Votre compte a été supprimé avec succès. Nous espérons vous revoir bientôt"
       signed_up_but_inactive: "Vous vous êtes inscrit avec succès. Votre compte est en attente d'activation"
       signed_up_but_locked: "Vous vous êtes inscrit avec succès. Votre compte est vérrouillé pour le moment"
-      signed_up_but_unconfirmed: "Merci de votre inscription. Un message de confirmation vous a été envoyé pour activer votre compte"
-      update_needs_confirmation: "Vous avez modifié votre adresse email. Pour activer cette modification, un message de confirmation vous a été envoyé par email"
+      signed_up_but_unconfirmed: "Merci de votre inscription. Un message de confirmation a été envoyé à votre messagerie pour activer votre compte"
+      update_needs_confirmation: "Vous avez modifié votre adresse email. Un message de confirmation a été envoyé à votre messagerie pour activer votre compte"
     unlocks:
       resend_instructions: "Ré-envoyer les instructions de déblocage"
       send_instructions: "Vous allez recevoir les instructions nécessaires au déblocage de votre compte dans quelques instants"
