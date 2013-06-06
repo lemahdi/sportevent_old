@@ -3,9 +3,8 @@ class RameursController < ApplicationController
   
   before_filter :store_location
   before_filter :authenticate_rameur!
-  # before_filter :rameur_signed_in?
-  before_filter :correct_rameur?, only: [:edit, :update]
-  before_filter :admin_rameur,    only: :destroy
+  before_filter :correct_rameur?,  only: [:edit, :update]
+  before_filter :admin_rameur,     only: :destroy
 
   # GET /rameurs
   # GET /rameurs.json

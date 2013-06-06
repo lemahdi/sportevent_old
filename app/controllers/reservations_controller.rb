@@ -1,7 +1,9 @@
+include ReservationsHelper
+
 class ReservationsController < ApplicationController
   before_action :set_reservation,           only: [:show, :update, :destroy]
   
-  before_filter :signed_in_rameur,          only: [:index, :show, :new, :create, :update, :destroy]
+  before_filter :authenticate_rameur!
   before_filter :check_params,              only: :create
   before_filter :subscribed_to_reservation, only: [:show, :destroy]
 
@@ -64,7 +66,7 @@ class ReservationsController < ApplicationController
       flash[:changed_reservation] = @reservation.id
       if params[:participate] == "yes"
         @reservation.rameurs << current_rameur
-        message = "Félicitations, vous avez rejoint l'équipage"
+        message = "Félicitations, vous faites partie de l'équipage"
       else
         @reservation.rameurs.delete(current_rameur)
         message = "Vous avez quitté l'équipage"
