@@ -9,7 +9,7 @@ class RameursController < ApplicationController
   # GET /rameurs
   # GET /rameurs.json
   def index
-    @rameurs = Rameur.asc("prenom").asc("nom").paginate(page: params[:page], per_page: 5)
+    @rameurs = Rameur.where(confirmation_token: nil).asc("prenom").asc("nom").paginate(page: params[:page], per_page: 5)
 
     respond_to do |format|
       format.html { @rameurs }

@@ -1,5 +1,11 @@
 <p>Bienvenu <%= @email %>!</p>
 
-<p>Vous pouvez activer votre compte en suivant le lien ci-dessous:</p>
+<p>Vous pouvez activer votre compte (*) en suivant le lien ci-dessous:</p>
 
 <p><%= link_to 'Activer mon compte', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+
+<p>
+	<i>
+		(*) En activant mon compte, je déclare accepter d'afficher mon image ainsi que mes noms et prénoms <strong>aux membres inscrits du site</strong>. Je déclare également accepter d'échanger par messagerie avec ces derniers.
+	</i>
+</p>
