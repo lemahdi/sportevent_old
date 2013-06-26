@@ -59,7 +59,7 @@
 			</div>
 			<br/>
 
-			<% if @reservation.rameurs.size > 1 %>
+			<% if @reservation.users.size > 1 %>
 				<div class="row">
 					<div class="span1 center">
 						<%= image_tag "glyphicons_043_group.png", alt: "groupe" %>
@@ -79,14 +79,14 @@
 			<% if @reservation.aviron.nbplaces > 1 %>
 				<div class="row">
 					<div class="span1 center">
-						<%= image_tag "glyphicons_135_inbox_out.png", alt: "mail rameurs" %>
+						<%= image_tag "glyphicons_135_inbox_out.png", alt: "mail users" %>
 					</div>
 					<div class="span3">
 	          <%= form_tag contact_path, method: :put do %>
 	            <%= hidden_field_tag :reservation_id, @reservation.id %>
 	            <%= hidden_field_tag :destination, "all" %>
 	            <%= text_area_tag :content %>
-	            <%= submit_tag "Je cherche un rameur", class: "btn btn-small btn-info", data: { confirm: "Cette action est irreversible. Si vous la validez, tous les rameurs du site seront notifiés par mail. Etes-vous sûrs de vouloir continuer ?" } %>
+	            <%= submit_tag "Je cherche un user", class: "btn btn-small btn-info", data: { confirm: "Cette action est irreversible. Si vous la validez, tous les users du site seront notifiés par mail. Etes-vous sûrs de vouloir continuer ?" } %>
 	          <% end %>
 					</div>
 				</div>
@@ -95,10 +95,10 @@
 		</div>
 
 		<div class="span3">
-		  <% @reservation.rameurs.each do |rameur| %>
+		  <% @reservation.users.each do |user| %>
 				<div class="row">
-			  	<%= gravatar_for rameur %>
-				  <br><%= link_to "#{rameur.nom} #{rameur.prenom}", rameur_path(rameur) %>
+			  	<%= gravatar_for user %>
+				  <br><%= link_to "#{user.nom} #{user.prenom}", user_path(user) %>
 				</div>
 				<br />
 		  <% end %>

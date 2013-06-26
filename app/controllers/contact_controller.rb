@@ -1,5 +1,5 @@
 class ContactController < ApplicationController
-  before_filter :authenticate_rameur!, only: :update
+  before_filter :authenticate_user!, only: :update
 
   def new
   	@contact = Contact.new
@@ -22,19 +22,19 @@ class ContactController < ApplicationController
 
   def update
     @contact = Contact.new
-    @contact.build(current_rameur, "")
+    @contact.build(current_user, "")
     @contact.content = params[:content]
     reservation = Reservation.find_by_id(params[:reservation_id])
     destination = params[:destination]
 
     unless @contact.content.empty?
       if destination == "group"
-        reservation.rameurs.each do |rameur|
-          UserMailer.notify_group_email(@contact, rameur, reservation).deliver if rameur.id != current_rameur.id
+        reservation.users.each do |user|
+          UserMailer.notify_group_email(@contact, user, reservation).deliver if user.id != current_user.id
         end
       elsif destination == "all"
-        Rameur.all.each do |rameur|
-          UserMailer.notify_group_email(@contact, rameur, reservation).deliver unless reservation.rameurs.include?(rameur)
+        User.all.each do |user|
+          UserMailer.notify_group_email(@contact, user, reservation).deliver unless reservation.users.include?(user)
         end
       end
 

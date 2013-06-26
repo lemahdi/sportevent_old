@@ -29,18 +29,18 @@ module ReservationsHelper
 	end
 
 	def equipage(reservation)
-		reservation.rameurs.map do |rameur|
-      rameur.prenom
+		reservation.users.map do |user|
+      user.prenom
     end.join(", ")
 	end
 
 	def empty_place?(reservation)
-		reservation.aviron.nbplaces > reservation.rameurs.size
+		reservation.aviron.nbplaces > reservation.users.size
 	end
 
 	def subscribed?(reservation)
-		reservation.rameurs.each do |r|
-			return true if r.id == current_rameur.id
+		reservation.users.each do |r|
+			return true if r.id == current_user.id
 		end
 		false
 	end
@@ -71,7 +71,7 @@ module ReservationsHelper
 
 		if subscribed?(reservation)
 			button_params[:participate] = "no"
-			button_params[:action]      = :delete if reservation.rameurs.size == 1
+			button_params[:action]      = :delete if reservation.users.size == 1
 			button_params[:text]        = "Désister  "
 		elsif !empty_place?(reservation)
 			button_params[:participate] = "no"
@@ -83,10 +83,10 @@ module ReservationsHelper
 
 	def responsable_confirmation(reservation)
 		message = "Confirmée au téléphone"
-		responsable = Rameur.find_by_id(reservation.responsable_id)
-		if responsable && reservation.rameurs.size > 1
+		responsable = User.find_by_id(reservation.responsable_id)
+		if responsable && reservation.users.size > 1
 			message += " par"
-			if responsable == current_rameur
+			if responsable == current_user
 				message += " moi"
 			else
 				message += " #{responsable.nom} #{responsable.prenom}"
@@ -97,8 +97,8 @@ module ReservationsHelper
 
 	def confirmation_message_group(reservation)
 		message = "Cette action est irreversible."
-		if reservation.rameurs.size > 1
-			message += " Si vous la validez, les rameurs inscrits seront notifiés par mail."
+		if reservation.users.size > 1
+			message += " Si vous la validez, les users inscrits seront notifiés par mail."
 		end
 		message += " Etes-vous sûrs de vouloir continuer ?"
 	end

@@ -1,6 +1,6 @@
 class Registre < ActiveRecord::Base
-  belongs_to :rameur
+  belongs_to :user
   belongs_to :reservation
 
-  validates_uniqueness_of :rameur_id, scope: :reservation_id
+  validates_uniqueness_of :user_id, scope: :reservation_id
 end

@@ -1,12 +1,12 @@
 Layolette::Application.routes.draw do
-  devise_for :rameurs, controllers: { registrations: "rameurs/registrations", confirmations: "rameurs/confirmations" }
-  devise_scope :rameur do
-    put "/confirm" => "rameurs/confirmations#confirm"
+  devise_for :users, controllers: { registrations: "users/registrations", confirmations: "users/confirmations" }
+  devise_scope :user do
+    put "/confirm" => "users/confirmations#confirm"
   end
 
   get "home/index"
 
-  resources :rameurs do
+  resources :users do
     resources :reservations, only: [:index]
   end
   resources :reservations, only: [:index, :show, :new, :create, :update, :destroy]

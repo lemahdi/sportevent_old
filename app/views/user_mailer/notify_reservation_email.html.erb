@@ -1,7 +1,7 @@
 <h1>Confirmation de la réservation <%= @reservation.id %></h1>
 <p>
   Bonjour <%= @prenom %>,<br>
-  La réservation a été confirmée au téléphone par <%= link_to @contact.nom, rameur_url(@contact.rameur) %>.
+  La réservation a été confirmée au téléphone par <%= link_to @contact.nom, user_url(@contact.user) %>.
   <br><br>
   
   Voici les détails :<br>

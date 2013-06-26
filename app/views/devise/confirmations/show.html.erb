@@ -9,12 +9,12 @@
   <div class="span6 offset3">
     <%= form_for(resource, :as => resource_name, :url => confirm_path, :html => { :method => :put }) do |f| %>
   		<!-- <%= devise_error_messages! %> -->
-      <% if @rameur.errors.any? %>
+      <% if @user.errors.any? %>
         <div id="error_explanation">
           <div class="alert alert-error">
-            <strong><%= pluralize(@rameur.errors.count, "erreur") %> :</strong>
+            <strong><%= pluralize(@user.errors.count, "erreur") %> :</strong>
             <ul>
-              <% @rameur.errors.full_messages.each do |msg| %>
+              <% @user.errors.full_messages.each do |msg| %>
                 <li><%= msg %></li>
               <% end %>
             </ul>

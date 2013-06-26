@@ -1,15 +1,15 @@
 <% provide(:title, 'Accueil') %>
 
 <div class="center hero-unit">
-	<h1>La Yolette Parisenne</h1>
+	<h1>Sport Event</h1>
 
 	<h2>
-		Bienvenu sur le site de la Yolette Parisienne!
-		Réservez, constituez votre équipage et partagez vos expériences.
+		Bienvenu sur le site des évènements sportifs!
+		Réservez, constituez votre équipe et partagez vos expériences.
 	</h2>
 
 <% unless signed_in? %>
-	<%= link_to "Devenir membre" , new_rameur_registration_path, class: "btn btn-large btn-primary" %>
+	<%= link_to "Devenir membre" , new_user_registration_path, class: "btn btn-large btn-primary" %>
 <% end %>
 
 </div>

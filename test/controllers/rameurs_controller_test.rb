@@ -1,14 +1,14 @@
 require 'test_helper'
 
-class RameursControllerTest < ActionController::TestCase
+class UsersControllerTest < ActionController::TestCase
   setup do
-    @rameur = rameurs(:one)
+    @user = users(:one)
   end
 
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:rameurs)
+    assert_not_nil assigns(:users)
   end
 
   test "should get new" do
@@ -16,34 +16,34 @@ class RameursControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create rameur" do
-    assert_difference('Rameur.count') do
-      post :create, rameur: { email: @rameur.email, nom: @rameur.nom, prenom: @rameur.prenom }
+  test "should create user" do
+    assert_difference('User.count') do
+      post :create, user: { email: @user.email, nom: @user.nom, prenom: @user.prenom }
     end
 
-    assert_redirected_to rameur_path(assigns(:rameur))
+    assert_redirected_to user_path(assigns(:user))
   end
 
-  test "should show rameur" do
-    get :show, id: @rameur
+  test "should show user" do
+    get :show, id: @user
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @rameur
+    get :edit, id: @user
     assert_response :success
   end
 
-  test "should update rameur" do
-    patch :update, id: @rameur, rameur: { email: @rameur.email, nom: @rameur.nom, prenom: @rameur.prenom }
-    assert_redirected_to rameur_path(assigns(:rameur))
+  test "should update user" do
+    patch :update, id: @user, user: { email: @user.email, nom: @user.nom, prenom: @user.prenom }
+    assert_redirected_to user_path(assigns(:user))
   end
 
-  test "should destroy rameur" do
-    assert_difference('Rameur.count', -1) do
-      delete :destroy, id: @rameur
+  test "should destroy user" do
+    assert_difference('User.count', -1) do
+      delete :destroy, id: @user
     end
 
-    assert_redirected_to rameurs_path
+    assert_redirected_to users_path
   end
 end

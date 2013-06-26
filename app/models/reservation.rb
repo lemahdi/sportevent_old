@@ -3,9 +3,9 @@ class Reservation < ActiveRecord::Base
 
   belongs_to :creneau
   belongs_to :aviron
-  belongs_to :rameur, class_name: "Rameur", foreign_key: "responsable_id"
+  belongs_to :user, class_name: "User", foreign_key: "responsable_id"
   has_many :registres, dependent: :destroy
-  has_many :rameurs, through: :registres
+  has_many :users, through: :registres
 
   validates :jour, presence: true
   validates :creneau_id, presence: true
@@ -17,7 +17,7 @@ class Reservation < ActiveRecord::Base
 
   private
     def empty_place
-      errors.add(:aviron, "#{aviron.id} est rempli") if self.rameurs.size > self.aviron.nbplaces
+      errors.add(:aviron, "#{aviron.id} est rempli") if self.users.size > self.aviron.nbplaces
     end
 
     def jour_cannot_be_after_3months

@@ -1,25 +1,25 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
     <div class="container">
-      <%= link_to "La Yolette Parisienne", root_path, id: "logo" %>
+      <%= link_to "Sport Event", root_path, id: "logo" %>
       <nav>
         <ul class="nav pull-right">
           <% if signed_in? %>
-            <li><%= link_to "Rameurs",     rameurs_path %></li>
+            <li><%= link_to "Membres",     users_path %></li>
             <li><%= link_to "Résevations", reservations_path %></li>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Mon compte <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li><%= link_to "Profil",           current_rameur %></li>
-                <li><%= link_to "Paramètres",       edit_rameur_registration_path %></li>
-                <li><%= link_to "Mes réservations", rameur_reservations_path(current_rameur) %></li>
+                <li><%= link_to "Profil",           current_user %></li>
+                <li><%= link_to "Paramètres",       edit_user_registration_path %></li>
+                <li><%= link_to "Mes réservations", user_reservations_path(current_user) %></li>
                 <li class="diviser"></li>
-                <li><%= link_to "Déconnexion",      destroy_rameur_session_path, method: "delete" %></li>
+                <li><%= link_to "Déconnexion",      destroy_user_session_path, method: "delete" %></li>
               </ul>
           <% else %>
-            <li><%= link_to "S'identifier", new_rameur_session_path %></li>
+            <li><%= link_to "S'identifier", new_user_session_path %></li>
           <% end %>
         </ul>
       </nav>

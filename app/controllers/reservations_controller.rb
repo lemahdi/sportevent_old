@@ -3,7 +3,7 @@ include ReservationsHelper
 class ReservationsController < ApplicationController
   before_action :set_reservation,           only: [:show, :update, :destroy]
   
-  before_filter :authenticate_rameur!
+  before_filter :authenticate_user!
   before_filter :check_params,              only: :create
   before_filter :subscribed_to_reservation, only: [:show, :destroy]
 
@@ -11,7 +11,7 @@ class ReservationsController < ApplicationController
   # GET /reservations.json
   def index
     @reservations = Reservation.recent.asc("jour").paginate(page: params[:page], per_page: 30)
-    @rameur = Rameur.find(params[:rameur_id]) if params[:rameur_id].present?
+    @user = User.find(params[:user_id]) if params[:user_id].present?
 
     respond_to do |format|
       format.html { @reservations }
@@ -47,7 +47,7 @@ class ReservationsController < ApplicationController
 
     respond_to do |format|
       if @reservation.save
-        @reservation.rameurs << current_rameur
+        @reservation.users << current_user
         flash[:changed_reservation] = @reservation.id
 
         format.html { redirect_to reservations_url, notice: "Réservation enregistrée" }
@@ -65,10 +65,10 @@ class ReservationsController < ApplicationController
     if params[:from_page] == "index"
       flash[:changed_reservation] = @reservation.id
       if params[:participate] == "yes"
-        @reservation.rameurs << current_rameur
+        @reservation.users << current_user
         message = "Félicitations, vous faites partie de l'équipage"
       else
-        @reservation.rameurs.delete(current_rameur)
+        @reservation.users.delete(current_user)
         message = "Vous avez quitté l'équipage"
       end
       respond_to do |format|
@@ -85,22 +85,22 @@ class ReservationsController < ApplicationController
         end
       else
         @reservation.confirmation = true
-        @reservation.responsable_id = current_rameur.id
+        @reservation.responsable_id = current_user.id
         respond_to do |format|
           if @reservation.save
-            nb_rameurs = @reservation.rameurs.size
-            if nb_rameurs > 1
-              # Notify the rameurs
+            nb_users = @reservation.users.size
+            if nb_users > 1
+              # Notify the users
               contact = Contact.new
-              contact.build(current_rameur, "")
-              @reservation.rameurs.each do |rameur|
-                UserMailer.notify_reservation_email(contact, rameur, @reservation).deliver if rameur.id!=current_rameur.id
+              contact.build(current_user, "")
+              @reservation.users.each do |user|
+                UserMailer.notify_reservation_email(contact, user, @reservation).deliver if user.id!=current_user.id
               end
             end
 
             message = "Réservation confirmée"
-            if nb_rameurs > 1
-              message += ", tous les rameurs ont été notifiés par mail"
+            if nb_users > 1
+              message += ", tous les users ont été notifiés par mail"
             end
             format.html { redirect_to reservation_url(@reservation), notice: message }
             format.json { render action: 'show', status: :updated, location: reservation_url(@reservation) }

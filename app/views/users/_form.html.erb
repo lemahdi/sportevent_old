@@ -1,12 +1,12 @@
 <div class="row">
   <div class="span6 offset3">
-    <%= form_for(@rameur) do |f| %>
-      <% if @rameur.errors.any? %>
+    <%= form_for(@user) do |f| %>
+      <% if @user.errors.any? %>
         <div id="error_explanation">
           <div class="alert alert-error">
-            <strong><%= pluralize(@rameur.errors.count, "erreur") %> :</strong>
+            <strong><%= pluralize(@user.errors.count, "erreur") %> :</strong>
             <ul>
-              <% @rameur.errors.full_messages.each do |msg| %>
+              <% @user.errors.full_messages.each do |msg| %>
                 <li><%= msg %></li>
               <% end %>
             </ul>

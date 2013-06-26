@@ -6,20 +6,20 @@
       <th>Jour</th>
       <th>Créneau</th>
       <th>Aviron</th>
-      <th>Rameurs</th>
+      <th>Users</th>
       <th></th>
     </tr>
   </thead>
   <tbody class="reservation"><p>
     <% @reservations.each do |reservation| %>
       <% subscribed = subscribed?(reservation) %>
-      <% if @rameur && subscribed || !@rameur %>
+      <% if @user && subscribed || !@user %>
         <tr class="<%= resa_class(reservation) %>" >
           <td><%= reservation.id %></td>
           <td>
             <% if subscribed %>
               <a href=<%= reservation_path(reservation) %> >
-                <%= image_tag "glyphicons_003_user.png", alt: "rameur" %>
+                <%= image_tag "glyphicons_003_user.png", alt: "user" %>
               </a>
             <% end %>
             <% if reservation.confirmation %>

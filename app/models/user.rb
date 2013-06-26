@@ -1,4 +1,4 @@
-class Rameur < ActiveRecord::Base
+class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -25,7 +25,7 @@ class Rameur < ActiveRecord::Base
 									 	 format:     { with: VALID_EMAIL_REGEXP },
 									 	 uniqueness: { case_sensitive: false }
 
-  scope :asc, -> attr { order("rameurs.#{attr} ASC") }
+  scope :asc, -> attr { order("users.#{attr} ASC") }
 
   def admin?
   	false

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130603233940) do
+ActiveRecord::Schema.define(version: 20130626200358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,31 @@ ActiveRecord::Schema.define(version: 20130603233940) do
     t.datetime "updated_at"
   end
 
-  create_table "rameurs", force: true do |t|
+  create_table "registres", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "reservation_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "registres", ["reservation_id"], name: "index_registres_on_reservation_id"
+  add_index "registres", ["user_id"], name: "index_registres_on_user_id"
+
+  create_table "reservations", force: true do |t|
+    t.date     "jour"
+    t.integer  "creneau_id"
+    t.integer  "aviron_id"
+    t.boolean  "confirmation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "responsable_id"
+  end
+
+  add_index "reservations", ["aviron_id"], name: "index_reservations_on_aviron_id"
+  add_index "reservations", ["creneau_id"], name: "index_reservations_on_creneau_id"
+  add_index "reservations", ["responsable_id"], name: "index_reservations_on_responsable_id"
+
+  create_table "users", force: true do |t|
     t.string   "nom"
     t.string   "prenom"
     t.datetime "created_at"
@@ -55,34 +79,10 @@ ActiveRecord::Schema.define(version: 20130603233940) do
     t.string   "authentication_token"
   end
 
-  add_index "rameurs", ["authentication_token"], name: "index_rameurs_on_authentication_token", unique: true
-  add_index "rameurs", ["confirmation_token"], name: "index_rameurs_on_confirmation_token", unique: true
-  add_index "rameurs", ["email"], name: "index_rameurs_on_email", unique: true
-  add_index "rameurs", ["reset_password_token"], name: "index_rameurs_on_reset_password_token", unique: true
-  add_index "rameurs", ["unlock_token"], name: "index_rameurs_on_unlock_token", unique: true
-
-  create_table "registres", force: true do |t|
-    t.integer  "rameur_id"
-    t.integer  "reservation_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "registres", ["rameur_id"], name: "index_registres_on_rameur_id"
-  add_index "registres", ["reservation_id"], name: "index_registres_on_reservation_id"
-
-  create_table "reservations", force: true do |t|
-    t.date     "jour"
-    t.integer  "creneau_id"
-    t.integer  "aviron_id"
-    t.boolean  "confirmation"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "responsable_id"
-  end
-
-  add_index "reservations", ["aviron_id"], name: "index_reservations_on_aviron_id"
-  add_index "reservations", ["creneau_id"], name: "index_reservations_on_creneau_id"
-  add_index "reservations", ["responsable_id"], name: "index_reservations_on_responsable_id"
+  add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true
 
 end

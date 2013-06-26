@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
 
     # Redirect to stored page on successful sign in
     def after_sign_in_path_for(resource)
-      session[:previous_url] || rameur_path(resource)
+      session[:previous_url] || user_path(resource)
     end
 
     # Redirect to root page on successful sign out

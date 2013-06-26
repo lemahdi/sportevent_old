@@ -1,0 +1,34 @@
+<% provide(:title, 'Users') %>
+
+<h1>Tous les users</h1>
+
+<%= will_paginate_fr @users %>
+
+<ul class="users">
+  <% @users.each do |user| %>
+    <div class="row">
+      <div class="span1">
+        <%= link_to(gravatar_for(user), user_path(user)) %>
+      </div>
+      <div class="span3">
+        <div>
+          <strong><%= user.nom %></strong>
+          <strong><%= user.prenom %></strong>
+        </div>
+        <div class="nav nav-pills">
+          <!-- <%= link_to 'Contacter', "#" %> -->
+          <% if current_user.admin? && !current_user?(user) %>
+            <%= link_to 'Afficher', user %>
+            <%= link_to 'Modifier', edit_user_path(user) %>
+            <%= link_to 'Supprimer', user, method: :delete, data: { confirm: 'Etes-vous sûr ?' } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    </br>
+  <% end %>
+</ul>
+
+<br />
+
+<%= will_paginate_fr @users %>

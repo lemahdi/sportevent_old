@@ -17,9 +17,9 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: layolette_development
+  database: sportevent_development
   pool: 5
-  username: layolette
+  username: sportevent
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -46,15 +46,15 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: layolette_test
+  database: sportevent_test
   pool: 5
-  username: layolette
+  username: sportevent
   password:
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: layolette_production
+  database: sportevent_production
   pool: 5
-  username: layolette
+  username: sportevent
   password:

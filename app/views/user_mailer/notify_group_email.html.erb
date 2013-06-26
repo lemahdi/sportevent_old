@@ -1,4 +1,4 @@
-<p>Vous avez reçu un message de la part de <%= link_to @contact.nom, rameur_url(@contact.rameur) %> concernant la réservation <%= link_to @reservation.id, reservation_url(@reservation) %>.</p>
+<p>Vous avez reçu un message de la part de <%= link_to @contact.nom, user_url(@contact.user) %> concernant la réservation <%= link_to @reservation.id, reservation_url(@reservation) %>.</p>
 <p>==========================================</p>
 <p>
   <%= @contact.content %>

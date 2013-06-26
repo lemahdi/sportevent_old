@@ -1,8 +1,8 @@
-class Rameurs::RegistrationsController < Devise::RegistrationsController
+class Users::RegistrationsController < Devise::RegistrationsController
 	before_filter :configure_permitted_parameters
 
   # def resource_params
-  #   params.require(:rameur).permit(:nom, :prenom, :email, :password, :password_confirmation)
+  #   params.require(:user).permit(:nom, :prenom, :email, :password, :password_confirmation)
   # end
 
   protected
@@ -18,12 +18,12 @@ class Rameurs::RegistrationsController < Devise::RegistrationsController
 
     # Redirect to stored page on successful update
     def after_update_path_for(resource)
-      rameur_path(resource)
+      user_path(resource)
     end
 
-    # Redirect to rameur page on successful signu
+    # Redirect to user page on successful signu
     def after_signup_path_for(resource)
-      rameur_path(resource)
+      user_path(resource)
     end
 
   # private

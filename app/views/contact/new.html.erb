@@ -21,13 +21,13 @@
 		  <% if signed_in? %>
       	<div class="row">
        		<div class="span6 field">
-          	<%= f.hidden_field :nom, value: "#{current_rameur.nom} #{current_rameur.prenom}" %>
+          	<%= f.hidden_field :nom, value: "#{current_user.nom} #{current_user.prenom}" %>
 			    </div>
 			  </div>
 			    
       	<div class="row">
 			    <div class="span6 field">
-	        	<%= f.hidden_field :email, value: current_rameur.email %>
+	        	<%= f.hidden_field :email, value: current_user.email %>
 			    </div>
 			  </div>
 		  <% else %>
